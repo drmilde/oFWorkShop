@@ -4,27 +4,28 @@
 void ofApp::setup(){
   ofSetWindowShape(1200, 730);
   //backImage.load("blue-yellow-linear.png");
-  backImage.load("green-metal-yellow.png");
+  backImage.load("werkstatt.png");
   knob = Knob(0.0, -1, 1, 220, 140);
-
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-  ofBackground(22, 55,245);
+  //ofBackground(22, 55,245);
+  ofBackground(22);
   angle = (int)(ofMap(mouseX, 0, 359, 0, backImage.getWidth()));
   angle = angle %(int)(backImage.getWidth());
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+  //backImage.draw(0,0);
 
   //knob.setValue(2*((float)mouseX / ofGetWidth())-1.0);
   knob.setValue(2*((float)mouseY / ofGetHeight())-1.0);
-  knob.drawAt(mouseX, mouseY);
+  knob.drawAt(mouseX, mouseY, 3);
   for (int x = 0; x < 1000; x += 32*4) {
     for (int y = 0; y < 600; y += 32*4) {
-      knob.drawAt(x,y);
+      knob.drawAt(x,y, 3);
     }  
   }
 }

@@ -7,6 +7,7 @@ Knob::Knob() : Knob (0.0, 0.0, 1.0, 0, 359) {
 Knob::Knob(float value, float min, float max, int start, int end) {
   strip.load("blue-yellow-linear.png");
   strip.load("green-metal-yellow.png");
+  myfont.load("Courier-Sans.ttf", 6);
 
   from = min;
   to = max;
@@ -18,12 +19,29 @@ Knob::Knob(float value, float min, float max, int start, int end) {
 Knob::~Knob() {
 }
 
-void Knob::drawAt(int x, int y) {
+void Knob::drawAt(int x, int y, int factor) {
   ofPushMatrix();
   ofTranslate(x,y);
-  ofScale(scaleFactor, scaleFactor);
+  ofScale(factor, factor);
   strip.drawSubsection(0,0, tileWidth, tileHeight, 0, idx);
+
+  drawValueStringAt(tileWidth/2-17,tileHeight+7);
+  
   ofPopMatrix(); 
+}
+
+void Knob::drawValueStringAt (int x, int y) {
+  std::string out = ofToString(fabs(value),3);
+  if (value >= 0) {
+    out = "+" + out;
+  } else {
+    out = "-" + out;
+  }
+  myfont.drawString(out,x,y);
+}
+
+void Knob::changeValue(float delta) {
+  setValue(value + delta);
 }
 
 void Knob::setValue(float v) {
