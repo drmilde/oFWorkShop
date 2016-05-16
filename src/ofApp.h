@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "Knob.h"
+#include "RectAngleManager.h"
 
 class ofApp : public ofBaseApp {
  public:
@@ -24,5 +25,7 @@ class ofApp : public ofBaseApp {
  private:
   ofImage backImage;
   int angle = 0;
-  Knob knob;
+
+  RectAngleManager rm;
+  vector <Knob> knobs;
 };

@@ -5,7 +5,15 @@ void ofApp::setup(){
   ofSetWindowShape(1200, 730);
   //backImage.load("blue-yellow-linear.png");
   backImage.load("werkstatt.png");
-  knob = Knob(0.0, -1, 1, 220, 140);
+
+  
+  for (int x = 0; x < 1000; x += 32*3) {
+    for (int y = 0; y < 600; y += 32*4) {
+      Knob knob = Knob(0.0, -1, 1, 220, 140);
+      knob.setBoundingBox(x,y, 32*3, 32*3);
+      knobs.push_back(knob);
+    }  
+  }
 }
 
 //--------------------------------------------------------------
@@ -20,14 +28,11 @@ void ofApp::update(){
 void ofApp::draw(){
   //backImage.draw(0,0);
 
-  //knob.setValue(2*((float)mouseX / ofGetWidth())-1.0);
-  knob.setValue(2*((float)mouseY / ofGetHeight())-1.0);
-  knob.drawAt(mouseX, mouseY, 3);
-  for (int x = 0; x < 1000; x += 32*4) {
-    for (int y = 0; y < 600; y += 32*4) {
-      knob.drawAt(x,y, 3);
-    }  
+  for (int i=0; i < knobs.size(); i++) {
+    knobs[i].draw();
   }
+
+  //rm.draw();
 }
 
 //--------------------------------------------------------------
@@ -47,12 +52,32 @@ void ofApp::mouseMoved(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
+  for (int i=0; i < knobs.size(); i++) {
+
+    if (knobs[i].isSelected()) {
+      float step = 2.0 / 128; 
+      if ((mouseY - ofGetPreviousMouseY()) < 0) {
+	knobs[i].changeValue(-step);
+      }
+      if ((mouseY - ofGetPreviousMouseY()) > 0) {
+	knobs[i].changeValue(+step);
+      }
+
+    }
+  }
+
+  /*
+  */
 
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+  std::cout << "Clicked at (" << x << ", " << y << ")" << std::endl;
+  for (int i=0; i < knobs.size(); i++) {
+    knobs[i].inside(x,y);
+  }
+  rm.inside(x,y);
 }
 
 //--------------------------------------------------------------

@@ -7,7 +7,9 @@ Knob::Knob() : Knob (0.0, 0.0, 1.0, 0, 359) {
 Knob::Knob(float value, float min, float max, int start, int end) {
   strip.load("blue-yellow-linear.png");
   strip.load("green-metal-yellow.png");
-  myfont.load("Courier-Sans.ttf", 6);
+  strip.resize(strip.getWidth() * factor,
+	       strip.getHeight() * factor);
+  myfont.load("Courier-Sans.ttf", 6 * factor);
 
   from = min;
   to = max;
@@ -19,15 +21,17 @@ Knob::Knob(float value, float min, float max, int start, int end) {
 Knob::~Knob() {
 }
 
-void Knob::drawAt(int x, int y, int factor) {
-  ofPushMatrix();
-  ofTranslate(x,y);
-  ofScale(factor, factor);
-  strip.drawSubsection(0,0, tileWidth, tileHeight, 0, idx);
+void Knob::draw() {
+  ofPushStyle();
 
-  drawValueStringAt(tileWidth/2-17,tileHeight+7);
-  
-  ofPopMatrix(); 
+  strip.drawSubsection(posx, posy, 
+		       tileWidth * factor, tileHeight * factor, 
+		       0, idx);
+  drawValueStringAt(posx + ((tileWidth * factor)/2-(17*factor)),
+  		    posy + ((tileHeight * factor)+(7*factor)));
+
+  Selectable::draw();
+  ofPopStyle();
 }
 
 void Knob::drawValueStringAt (int x, int y) {
@@ -63,5 +67,5 @@ void Knob::setIndex() {
   idx = (int)ofMap(idx, 0, 359, 0, strip.getHeight());
   int h = (int)(strip.getHeight());
   idx = (idx + h) % h; // to positive values and normalize
-  idx = (idx / tileHeight) * tileHeight;
+  idx = (idx / (tileHeight*factor)) * (tileHeight*factor);
 }
