@@ -25,16 +25,22 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  //backImage.draw(0,0);
-
-  gui.draw();
+  if (imgRef) {
+    backImage.draw(0,0);
+  } else {
+    gui.draw();
+  }
 
   //rm.draw();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+  if (key == 't'){
+    imgRef = !imgRef;
+  } else if (key == ' '){
+    ; // do something else
+  }
 }
 
 //--------------------------------------------------------------

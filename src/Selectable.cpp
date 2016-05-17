@@ -10,8 +10,14 @@ Selectable::~Selectable() {
 }
 
 void Selectable::setBoundingBox (int x, int y, int w, int h) {
+  setBoundingBox(x,y,w,h,1,1);
+}
+
+
+void Selectable::setBoundingBox (int x, int y, int w, int h, int fx, int fy) {
   GuiDrawable::setBoundingBox(x,y,w,h);
   box = ofRectangle(posx, posy, width, height);
+  sensitiveField = ofRectangle(posx, posy, width*fx, height*fy);
 }
 
 void Selectable::setSelected(bool sel) {
@@ -23,7 +29,7 @@ bool Selectable::isSelected() {
 }
 
 bool Selectable::inside(int x, int y) {
-  selected = box.inside(x,y);
+  selected = sensitiveField.inside(x,y);
   return selected;
 }
 

@@ -30,9 +30,9 @@ WorkShopGUI::WorkShopGUI() {
   vcfAmntKnob.setBoundingBox(875,330, 32*3, 32*3);
   knobs.push_back(vcfAmntKnob);
 
-  glideKnob =  Knob("glide", 0.0, 0, 1, 220, 140);
-  glideKnob.setBoundingBox(105,600, 32*3, 32*3);
-  knobs.push_back(glideKnob);
+  rateKnob =  Knob("rate", 0.0, 0, 1, 220, 140);
+  rateKnob.setBoundingBox(100,600, 32*3, 32*3);
+  knobs.push_back(rateKnob);
 
   attackKnob =  Knob("attack", 0.0, 0, 1, 220, 140);
   attackKnob.setBoundingBox(875,600, 32*3, 32*3);
@@ -44,19 +44,42 @@ WorkShopGUI::WorkShopGUI() {
 
   // binary switches
   vcoWaveFormSwitch = BinarySwitch("vco wave form", 0, 1, "Pulse", "Saw");
-  vcoWaveFormSwitch.setBoundingBox(260, 95, 35, 66);
+  vcoWaveFormSwitch.setBoundingBox(260, 95, 35, 66, 4, 1);
   switches.push_back(vcoWaveFormSwitch);
 
   vcaModeSwitch = BinarySwitch("vca mode", 0, 1, "On", "EG");
-  vcaModeSwitch.setBoundingBox(1100, 95, 35, 66);
+  vcaModeSwitch.setBoundingBox(1100, 95, 35, 66, 4, 1);
   switches.push_back(vcaModeSwitch);
+
+  vcoModSourceSwitch = BinarySwitch("vco mod source", 0, 1, "EG", "LFO");
+  vcoModSourceSwitch.setBoundingBox(85, 350, 35, 66, 4, 1);
+  switches.push_back(vcoModSourceSwitch);
+
+  vcoModDestSwitch = BinarySwitch("vco mod dest", 0, 1, "PWM", "FREQ");
+  vcoModDestSwitch.setBoundingBox(430, 350, 35, 66, 4, 1);
+  switches.push_back(vcoModDestSwitch);
+
+  vcfModSourceSwitch = BinarySwitch("vcf mod source", 0, 1, "EG", "LFO");
+  vcfModSourceSwitch.setBoundingBox(690, 350, 35, 66, 4, 1);
+  switches.push_back(vcfModSourceSwitch);
+
+  vcfModPolaritySwitch = BinarySwitch("vcf mod polarity", 0, 1, "[+]", "[-]");
+  vcfModPolaritySwitch.setBoundingBox(1085, 350, 35, 66, 4, 1);
+  switches.push_back(vcfModPolaritySwitch);
+
+  lfoWaveFormSwitch = BinarySwitch("lfo wave form", 0, 1, "Square", "Triangle");
+  lfoWaveFormSwitch.setBoundingBox(430, 620, 35, 66, 4, 1);
+  switches.push_back(lfoWaveFormSwitch);
+
+  egSustainSwitch = BinarySwitch("eg sustain", 0, 1, "On", "Off");
+  egSustainSwitch.setBoundingBox(690, 620, 35, 66, 4, 1);
+  switches.push_back(egSustainSwitch);
 
 }
 
 WorkShopGUI::~WorkShopGUI() {
   // clean up here
 }
-
 
 void WorkShopGUI::draw() {
   ofPushStyle();
@@ -77,8 +100,7 @@ void WorkShopGUI::draw() {
 
   smallfont.drawString("CUTOFF", 600 + 50 + 20, 240);
   smallfont.drawString("RES", 900, 240);
-  smallfont.drawString("MODE", 1090, 240);
-  
+  smallfont.drawString("MODE", 1090, 240);  
 
   // zweite Zeile
   drawTitle("VCO MOD", 10 + 10, 250 + 20 + 30, 175, 40);
@@ -103,13 +125,12 @@ void WorkShopGUI::draw() {
   ofPopStyle();
 
   // Beschriftung dritte zeile
-  smallfont.drawString("GLIDE", 110, 760);
-  smallfont.drawString("DEST", 400 + 20, 760);
+  smallfont.drawString("RATE", 110, 760);
+  smallfont.drawString("WAVE", 400 + 20, 760);
 
   smallfont.drawString("SUSTAIN", 600 + 50 + 20, 760);
   smallfont.drawString("ATTACK", 875, 760);
   smallfont.drawString("DECAY", 1050, 760);
-
 
   // draw the knobs
   for (int i=0; i < knobs.size(); i++) {
@@ -137,15 +158,17 @@ void WorkShopGUI::drawTitle(std::string txt, int x, int y, int w, int h) {
 
 
 // callbacks
-
 void WorkShopGUI::mouseDragged(int msy, int x, int y, int button){
   for (int i=0; i < knobs.size(); i++) {
 
+    // check is knob is selected
     if (knobs[i].isSelected()) {
-      float step = 1.0 / 128; 
+      float step = 1.0 / 128; // standard: 128 steps for complete range
+      // dragging up
       if ((msy - ofGetPreviousMouseY()) < 0) {
 	knobs[i].changeValue(-step);
       }
+      // dragging down
       if ((msy - ofGetPreviousMouseY()) > 0) {
 	knobs[i].changeValue(+step);
       }
@@ -155,8 +178,22 @@ void WorkShopGUI::mouseDragged(int msy, int x, int y, int button){
 }
 
 void WorkShopGUI::mousePressed(int x, int y, int button){
+  // check, if knob is selected
   for (int i=0; i < knobs.size(); i++) {
     knobs[i].inside(x,y);
   }
+
+  // check, if binary switch is selected
+  for (int i=0; i < switches.size(); i++) {
+    switches[i].inside(x,y);
+  }
+  // toggle selected switch and reset selection
+  for (int i=0; i < switches.size(); i++) {
+    if (switches[i].isSelected()) {
+      switches[i].toggle();
+      switches[i].setSelected(false);
+    }
+  }
+
 }
 

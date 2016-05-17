@@ -26,6 +26,7 @@ class ofApp : public ofBaseApp {
  private:
   ofImage backImage;
   int angle = 0;
+  bool imgRef = false;
 
   RectAngleManager rm;
   vector <Knob> knobs;

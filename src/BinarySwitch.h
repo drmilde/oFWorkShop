@@ -14,6 +14,8 @@ class BinarySwitch : public Selectable {
   virtual ~BinarySwitch();
 
   void draw();
+  void setValue(float value);
+  void toggle();
 
  private:
   ofRectangle box;
@@ -21,8 +23,11 @@ class BinarySwitch : public Selectable {
   std::string hiString;
   float hiValue;
   float lowValue;
+  float value = 0;
 
   ofTrueTypeFont smallFont;
+  ofImage imgSwitch;
+  int imgOffsetX = 0;
 };
 
 

@@ -29,12 +29,19 @@ class WorkShopGUI {
   Knob resKnob = Knob("res");
   Knob lfoAmntKnob = Knob("lfo amnt");
   Knob vcfAmntKnob = Knob("vcf amnt");
-  Knob glideKnob = Knob("glide");
+  Knob rateKnob = Knob("rate");
   Knob attackKnob = Knob("attack");
   Knob decayKnob = Knob("decay");
+  Knob glideKnob = Knob("glide");
 
   BinarySwitch vcoWaveFormSwitch = BinarySwitch("vco wave form");
   BinarySwitch vcaModeSwitch = BinarySwitch("vca mode");
+  BinarySwitch vcoModSourceSwitch = BinarySwitch("vco mod source");
+  BinarySwitch vcoModDestSwitch = BinarySwitch("vco mod dest");
+  BinarySwitch vcfModSourceSwitch = BinarySwitch("vcf mod source");
+  BinarySwitch vcfModPolaritySwitch = BinarySwitch("vcf mod polarity");
+  BinarySwitch lfoWaveFormSwitch = BinarySwitch("lfo wave form");
+  BinarySwitch egSustainSwitch = BinarySwitch("eg sustain");
   vector <Knob> knobs;
   vector <BinarySwitch> switches;
 

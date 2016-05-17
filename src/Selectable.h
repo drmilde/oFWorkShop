@@ -11,6 +11,7 @@ class Selectable : public GuiDrawable {
   virtual ~Selectable();
 
   void setBoundingBox (int x, int y, int w, int h);
+  void setBoundingBox (int x, int y, int w, int h, int fx, int fy);
   void setSelected(bool sel);
   bool isSelected();
   bool inside(int x, int y);
@@ -18,6 +19,7 @@ class Selectable : public GuiDrawable {
 
  private:
   ofRectangle box;
+  ofRectangle sensitiveField;
   bool selected = false;
 
 };
