@@ -1,12 +1,13 @@
 #ifndef _SELECTABLE_h_
 #define _SELECTABLE_h_
 
+#include <iostream>
 #include "ofMain.h"
 #include "GuiDrawable.h"
 
 class Selectable : public GuiDrawable {
  public:
-  Selectable();
+  Selectable(std::string name);
   virtual ~Selectable();
 
   void setBoundingBox (int x, int y, int w, int h);

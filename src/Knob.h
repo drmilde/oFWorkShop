@@ -1,14 +1,17 @@
 #ifndef __KNOB_h_
 #define __KNOB_h_
 
+#include <iostream>
 #include "ofMain.h"
 #include "ofTrueTypeFont.h"
 #include "Selectable.h"
 
 class Knob : public Selectable {
  public:
-  Knob();
-  Knob(float value, float min, float max, int start, int end);
+  Knob(std::string name);
+  Knob(std::string name,
+       float value, float min, float max, 
+       int start, int end);
   virtual ~Knob();
 
   void draw();

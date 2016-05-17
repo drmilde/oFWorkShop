@@ -1,6 +1,8 @@
 #include "GuiDrawable.h"
 
-GuiDrawable::GuiDrawable(int x, int y, int w, int h) {
+GuiDrawable::GuiDrawable(std::string n, 
+			 int x, int y, int w, int h) {
+  name = n;
   setBoundingBox(x,y,w,h);
 }
 

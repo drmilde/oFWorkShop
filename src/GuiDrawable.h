@@ -1,10 +1,12 @@
 #ifndef _GUI_DRAWABLE_h_
 #define _GUI_DRAWABLE_h_
 
+#include <iostream>
+
 class GuiDrawable {
 
  public:
-  GuiDrawable(int x, int y, int w, int h);
+  GuiDrawable(std::string n, int x, int y, int w, int h);
   virtual ~GuiDrawable();
 
   void setBoundingBox(int x, int y, int w, int h);
@@ -15,6 +17,8 @@ class GuiDrawable {
   int posy;
   int width;
   int height;
+
+  std::string name;
 
 };
 

@@ -1,10 +1,11 @@
 #include "Knob.h"
 
-Knob::Knob() : Knob (0.0, 0.0, 1.0, 0, 359) {
+Knob::Knob(std::string name) : Knob (name, 0.0, 0.0, 1.0, 0, 359) {
   // do something useful here
 }
 
-Knob::Knob(float value, float min, float max, int start, int end) {
+Knob::Knob(std::string n, float value, float min, 
+	   float max, int start, int end): Selectable (n){
   strip.load("blue-yellow-linear.png");
   strip.load("green-metal-yellow.png");
   strip.resize(strip.getWidth() * factor,
@@ -27,10 +28,12 @@ void Knob::draw() {
   strip.drawSubsection(posx, posy, 
 		       tileWidth * factor, tileHeight * factor, 
 		       0, idx);
+
   drawValueStringAt(posx + ((tileWidth * factor)/2-(17*factor)),
   		    posy + ((tileHeight * factor)+(7*factor)));
 
   Selectable::draw();
+
   ofPopStyle();
 }
 

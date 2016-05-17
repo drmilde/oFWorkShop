@@ -6,10 +6,9 @@ void ofApp::setup(){
   //backImage.load("blue-yellow-linear.png");
   backImage.load("werkstatt.png");
 
-  
-  for (int x = 0; x < 1000; x += 32*3) {
-    for (int y = 0; y < 600; y += 32*4) {
-      Knob knob = Knob(0.0, -1, 1, 220, 140);
+  for (int x = 30; x < 1000; x += 32*3) {
+    for (int y = 50; y < 600; y += 32*4) {
+      Knob knob = Knob("knopf", 0.0, 0, 1, 220, 140);
       knob.setBoundingBox(x,y, 32*3, 32*3);
       knobs.push_back(knob);
     }  
@@ -28,7 +27,19 @@ void ofApp::update(){
 void ofApp::draw(){
   //backImage.draw(0,0);
 
-  for (int i=0; i < knobs.size(); i++) {
+  ofPushStyle();
+  ofNoFill();
+  // erste Zeile
+  ofDrawRectRounded(10, 10, 400, 300, 10);
+  ofDrawRectRounded(410+10, 10, 400, 300, 10);
+  ofDrawRectRounded(810+20, 10, 250, 300, 10);
+
+  // zweite Zeile
+  ofDrawRectRounded(10, 310+10, 400, 300, 10);
+  ofDrawRectRounded(410+10, 310+10, 400, 300, 10);
+  ofPopStyle();
+
+  for (int i=0; i < knobs.size()/2; i++) {
     knobs[i].draw();
   }
 
@@ -55,7 +66,7 @@ void ofApp::mouseDragged(int x, int y, int button){
   for (int i=0; i < knobs.size(); i++) {
 
     if (knobs[i].isSelected()) {
-      float step = 2.0 / 128; 
+      float step = 1.0 / 128; 
       if ((mouseY - ofGetPreviousMouseY()) < 0) {
 	knobs[i].changeValue(-step);
       }

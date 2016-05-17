@@ -1,6 +1,6 @@
 #include "Selectable.h"
 
-Selectable::Selectable() : GuiDrawable(0,0,0,0) {
+Selectable::Selectable(std::string n) : GuiDrawable(n, 0,0,0,0) {
   // do something useful here
   setBoundingBox(0,0,0,0); // no bounding box;
 }
