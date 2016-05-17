@@ -8,6 +8,9 @@ Knob::Knob(std::string n, float value, float min,
 	   float max, int start, int end): Selectable (n){
   strip.load("blue-yellow-linear.png");
   strip.load("green-metal-yellow.png");
+  strip.load("black-yellow-metal.png");
+  strip.load("black-white-metal.png");
+  strip.load("black-white-metal-small.png");
   strip.resize(strip.getWidth() * factor,
 	       strip.getHeight() * factor);
   myfont.load("Courier-Sans.ttf", 6 * factor);

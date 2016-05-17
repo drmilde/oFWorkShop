@@ -4,6 +4,7 @@
 #include "ofMain.h"
 #include "ofTrueTypeFont.h"
 #include "Knob.h"
+#include "BinarySwitch.h"
 
 class WorkShopGUI {
  public:
@@ -31,7 +32,12 @@ class WorkShopGUI {
   Knob glideKnob = Knob("glide");
   Knob attackKnob = Knob("attack");
   Knob decayKnob = Knob("decay");
+
+  BinarySwitch vcoWaveFormSwitch = BinarySwitch("vco wave form");
+  BinarySwitch vcaModeSwitch = BinarySwitch("vca mode");
   vector <Knob> knobs;
+  vector <BinarySwitch> switches;
+
 
 
 };

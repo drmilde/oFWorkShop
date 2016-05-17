@@ -5,6 +5,7 @@ WorkShopGUI::WorkShopGUI() {
   myfont.load("Courier-Sans.ttf", 28);
   smallfont.load("Courier-Sans.ttf", 18);
 
+  //knobs
   freqKnob =  Knob("freq", 0.0, 0, 1, 220, 140);
   freqKnob.setBoundingBox(55,80, 32*3, 32*3);
   knobs.push_back(freqKnob);
@@ -41,6 +42,14 @@ WorkShopGUI::WorkShopGUI() {
   decayKnob.setBoundingBox(1045,600, 32*3, 32*3);
   knobs.push_back(decayKnob);
 
+  // binary switches
+  vcoWaveFormSwitch = BinarySwitch("vco wave form", 0, 1, "Pulse", "Saw");
+  vcoWaveFormSwitch.setBoundingBox(260, 95, 35, 66);
+  switches.push_back(vcoWaveFormSwitch);
+
+  vcaModeSwitch = BinarySwitch("vca mode", 0, 1, "On", "EG");
+  vcaModeSwitch.setBoundingBox(1100, 95, 35, 66);
+  switches.push_back(vcaModeSwitch);
 
 }
 
@@ -105,6 +114,10 @@ void WorkShopGUI::draw() {
   // draw the knobs
   for (int i=0; i < knobs.size(); i++) {
     knobs[i].draw();
+  }
+  // draw the switches
+  for (int i=0; i < switches.size(); i++) {
+    switches[i].draw();
   }
 }
 
