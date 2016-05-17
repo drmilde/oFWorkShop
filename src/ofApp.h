@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "Knob.h"
 #include "RectAngleManager.h"
+#include "WorkShopGUI.h"
 
 class ofApp : public ofBaseApp {
  public:
@@ -28,4 +29,6 @@ class ofApp : public ofBaseApp {
 
   RectAngleManager rm;
   vector <Knob> knobs;
+
+  WorkShopGUI gui;
 };
