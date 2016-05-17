@@ -5,6 +5,7 @@
 #include "ofTrueTypeFont.h"
 #include "Knob.h"
 #include "BinarySwitch.h"
+#include "HorizontalSlider.h"
 
 class WorkShopGUI {
  public:
@@ -12,7 +13,7 @@ class WorkShopGUI {
   virtual ~WorkShopGUI();
 
   void draw();
-  void mouseDragged(int msy, int x, int y, int button);
+  void mouseDragged(int msx, int msy, int x, int y, int button);
   void mousePressed(int x, int y, int button);
 
  private:
@@ -45,6 +46,8 @@ class WorkShopGUI {
   vector <Knob> knobs;
   vector <BinarySwitch> switches;
 
+  // test sliders
+  HorizontalSlider hs;
 
 
 };

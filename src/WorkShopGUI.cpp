@@ -75,6 +75,9 @@ WorkShopGUI::WorkShopGUI() {
   egSustainSwitch.setBoundingBox(690, 620, 35, 66, 4, 1);
   switches.push_back(egSustainSwitch);
 
+  hs  = HorizontalSlider();
+  hs.setBoundingBox(140,35,400,20);
+
 }
 
 WorkShopGUI::~WorkShopGUI() {
@@ -140,6 +143,9 @@ void WorkShopGUI::draw() {
   for (int i=0; i < switches.size(); i++) {
     switches[i].draw();
   }
+
+  // test hs
+  hs.draw();
 }
 
 
@@ -158,7 +164,8 @@ void WorkShopGUI::drawTitle(std::string txt, int x, int y, int w, int h) {
 
 
 // callbacks
-void WorkShopGUI::mouseDragged(int msy, int x, int y, int button){
+void WorkShopGUI::mouseDragged(int msx, int msy, 
+			       int x, int y, int button){
   for (int i=0; i < knobs.size(); i++) {
 
     // check is knob is selected
@@ -170,6 +177,15 @@ void WorkShopGUI::mouseDragged(int msy, int x, int y, int button){
       }
       // dragging down
       if ((msy - ofGetPreviousMouseY()) > 0) {
+	knobs[i].changeValue(+step);
+      }
+
+      // dragging left
+      if ((msx - ofGetPreviousMouseX()) < 0) {
+	knobs[i].changeValue(-step);
+      }
+      // dragging right
+      if ((msx - ofGetPreviousMouseX()) > 0) {
 	knobs[i].changeValue(+step);
       }
 

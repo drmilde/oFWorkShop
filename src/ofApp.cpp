@@ -55,7 +55,7 @@ void ofApp::mouseMoved(int x, int y){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-  gui.mouseDragged(mouseY, x, y, button);
+  gui.mouseDragged(mouseX, mouseY, x, y, button);
 }
 
 //--------------------------------------------------------------
