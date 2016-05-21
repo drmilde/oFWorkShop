@@ -34,6 +34,10 @@ WorkShopGUI::WorkShopGUI() {
   rateKnob.setBoundingBox(100,600, 32*3, 32*3);
   knobs.push_back(rateKnob);
 
+  glideKnob =  Knob("glide", 0.0, 0, 1, 220, 140);
+  glideKnob.setBoundingBox(265,600, 32*3, 32*3);
+  knobs.push_back(glideKnob);
+
   attackKnob =  Knob("attack", 0.0, 0, 1, 220, 140);
   attackKnob.setBoundingBox(875,600, 32*3, 32*3);
   knobs.push_back(attackKnob);
@@ -75,8 +79,13 @@ WorkShopGUI::WorkShopGUI() {
   egSustainSwitch.setBoundingBox(690, 620, 35, 66, 4, 1);
   switches.push_back(egSustainSwitch);
 
-  hs  = HorizontalSlider();
-  hs.setBoundingBox(140,35,400,20);
+  hs  = HorizontalSlider("hslider", 0, 0, 200);
+  hs.setBoundingBox(140,35,400,20,1,3);
+  hs.setValue(0);
+
+  vs  = VerticalSlider("Attack", 0, 0, 127);
+  vs.setBoundingBox(560,100,20,200,3,1);
+  vs.setValue(0);
 
 }
 
@@ -129,6 +138,7 @@ void WorkShopGUI::draw() {
 
   // Beschriftung dritte zeile
   smallfont.drawString("RATE", 110, 760);
+  smallfont.drawString("GLIDE", 270, 760);
   smallfont.drawString("WAVE", 400 + 20, 760);
 
   smallfont.drawString("SUSTAIN", 600 + 50 + 20, 760);
@@ -136,16 +146,17 @@ void WorkShopGUI::draw() {
   smallfont.drawString("DECAY", 1050, 760);
 
   // draw the knobs
-  for (int i=0; i < knobs.size(); i++) {
+  for (uint i=0; i < knobs.size(); i++) {
     knobs[i].draw();
   }
   // draw the switches
-  for (int i=0; i < switches.size(); i++) {
+  for (uint i=0; i < switches.size(); i++) {
     switches[i].draw();
   }
 
-  // test hs
+  // draw the horizontal slider
   hs.draw();
+  vs.draw();
 }
 
 
@@ -166,7 +177,9 @@ void WorkShopGUI::drawTitle(std::string txt, int x, int y, int w, int h) {
 // callbacks
 void WorkShopGUI::mouseDragged(int msx, int msy, 
 			       int x, int y, int button){
-  for (int i=0; i < knobs.size(); i++) {
+
+  // KNOBS
+  for (uint i=0; i < knobs.size(); i++) {
 
     // check is knob is selected
     if (knobs[i].isSelected()) {
@@ -191,24 +204,43 @@ void WorkShopGUI::mouseDragged(int msx, int msy,
 
     }
   }
+
+  // HORIZONTAL/VERTICAL SLIDER
+  if (hs.isSelected()) {
+    hs.setClickPosition(x);
+  }
+  if (vs.isSelected()) {
+    vs.setClickPosition(y);
+  }
+
 }
 
 void WorkShopGUI::mousePressed(int x, int y, int button){
+  // KNOBS
   // check, if knob is selected
-  for (int i=0; i < knobs.size(); i++) {
+  for (uint i=0; i < knobs.size(); i++) {
     knobs[i].inside(x,y);
   }
 
+  // SWITCHES
   // check, if binary switch is selected
-  for (int i=0; i < switches.size(); i++) {
+  for (uint i=0; i < switches.size(); i++) {
     switches[i].inside(x,y);
   }
   // toggle selected switch and reset selection
-  for (int i=0; i < switches.size(); i++) {
+  for (uint i=0; i < switches.size(); i++) {
     if (switches[i].isSelected()) {
       switches[i].toggle();
       switches[i].setSelected(false);
     }
+  }
+
+  // HORIZONTAL/VERTICAL SLIDER
+  if (hs.inside(x,y)) {
+    hs.setClickPosition(x);
+  }
+  if (vs.inside(x,y)) {
+    vs.setClickPosition(y);
   }
 
 }

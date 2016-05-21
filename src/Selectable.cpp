@@ -43,6 +43,7 @@ void Selectable::draw() {
   }
 
   ofDrawRectangle(box);
+  ofDrawRectangle(sensitiveField);
   
   ofPopStyle();
 }

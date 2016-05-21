@@ -6,6 +6,7 @@
 #include "Knob.h"
 #include "BinarySwitch.h"
 #include "HorizontalSlider.h"
+#include "VerticalSlider.h"
 
 class WorkShopGUI {
  public:
@@ -48,6 +49,7 @@ class WorkShopGUI {
 
   // test sliders
   HorizontalSlider hs;
+  VerticalSlider vs;
 
 
 };

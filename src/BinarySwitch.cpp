@@ -50,6 +50,9 @@ void BinarySwitch::draw() {
     imgSwitch.draw(posx - imgOffsetX, posy + height -imgSwitch.getHeight());
   }
   ofPopStyle();
+
+  //Selectable::draw();
+
 }
 
 

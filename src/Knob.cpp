@@ -35,9 +35,9 @@ void Knob::draw() {
   drawValueStringAt(posx + ((tileWidth * factor)/2-(17*factor)),
   		    posy + ((tileHeight * factor)+(7*factor)));
 
-  //Selectable::draw();
-
   ofPopStyle();
+
+  //Selectable::draw();
 }
 
 void Knob::drawValueStringAt (int x, int y) {
