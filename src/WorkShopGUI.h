@@ -47,11 +47,6 @@ class WorkShopGUI {
   vector <Knob> knobs;
   vector <BinarySwitch> switches;
 
-  // test sliders
-  HorizontalSlider hs;
-  VerticalSlider vs;
-
-
 };
 
 

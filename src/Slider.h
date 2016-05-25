@@ -20,11 +20,9 @@ class Slider : public Selectable {
   void drawNameStringAt (int x, int y);
 
   ofImage imgHandle;
-  ofTrueTypeFont smallFont;
   float value;
   float low;
-  float high;
-  
+  float high;  
 };
 
 #endif

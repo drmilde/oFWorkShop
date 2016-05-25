@@ -78,15 +78,6 @@ WorkShopGUI::WorkShopGUI() {
   egSustainSwitch = BinarySwitch("eg sustain", 0, 1, "On", "Off");
   egSustainSwitch.setBoundingBox(690, 620, 35, 66, 4, 1);
   switches.push_back(egSustainSwitch);
-
-  hs  = HorizontalSlider("hslider", 0, 0, 200);
-  hs.setBoundingBox(140,35,400,20,1,3);
-  hs.setValue(0);
-
-  vs  = VerticalSlider("Attack", 0, 0, 127);
-  vs.setBoundingBox(560,100,20,200,3,1);
-  vs.setValue(0);
-
 }
 
 WorkShopGUI::~WorkShopGUI() {
@@ -154,9 +145,6 @@ void WorkShopGUI::draw() {
     switches[i].draw();
   }
 
-  // draw the horizontal slider
-  hs.draw();
-  vs.draw();
 }
 
 
@@ -204,15 +192,6 @@ void WorkShopGUI::mouseDragged(int msx, int msy,
 
     }
   }
-
-  // HORIZONTAL/VERTICAL SLIDER
-  if (hs.isSelected()) {
-    hs.setClickPosition(x);
-  }
-  if (vs.isSelected()) {
-    vs.setClickPosition(y);
-  }
-
 }
 
 void WorkShopGUI::mousePressed(int x, int y, int button){
@@ -234,14 +213,5 @@ void WorkShopGUI::mousePressed(int x, int y, int button){
       switches[i].setSelected(false);
     }
   }
-
-  // HORIZONTAL/VERTICAL SLIDER
-  if (hs.inside(x,y)) {
-    hs.setClickPosition(x);
-  }
-  if (vs.inside(x,y)) {
-    vs.setClickPosition(y);
-  }
-
 }
 

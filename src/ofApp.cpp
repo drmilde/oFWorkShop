@@ -25,22 +25,33 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-  if (imgRef) {
+  if (imgRef == 0) {
     backImage.draw(0,0);
-  } else {
+  } 
+  if (imgRef == 1) {
     gui.draw();
-  }
+  } 
 
+  if (imgRef == 2) {
+    // draw widgets
+    wt.draw();
+  } 
+  
   //rm.draw();
 }
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
   if (key == 't'){
-    imgRef = !imgRef;
-  } else if (key == ' '){
-    ; // do something else
+    imgRef = 0;
+  } 
+  else if (key == 'g') {
+    imgRef = 1;
   }
+  else if (key == 'w') {
+    imgRef = 2;
+  }
+
 }
 
 //--------------------------------------------------------------
@@ -56,12 +67,14 @@ void ofApp::mouseMoved(int x, int y){
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
   gui.mouseDragged(mouseX, mouseY, x, y, button);
+  wt.drag(mouseX, mouseY, x,y);
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
   std::cout << "Clicked at (" << x << ", " << y << ")" << std::endl;
   gui.mousePressed(x,y,button);
+  wt.mousePressed(x,y);
   rm.inside(x,y);
 }
 

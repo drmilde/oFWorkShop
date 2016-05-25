@@ -4,6 +4,7 @@
 #include "Knob.h"
 #include "RectAngleManager.h"
 #include "WorkShopGUI.h"
+#include "WidgetsTest.h"
 
 class ofApp : public ofBaseApp {
  public:
@@ -26,10 +27,11 @@ class ofApp : public ofBaseApp {
  private:
   ofImage backImage;
   int angle = 0;
-  bool imgRef = false;
+  int imgRef = 1;
 
   RectAngleManager rm;
   vector <Knob> knobs;
 
   WorkShopGUI gui;
+  WidgetsTest wt;
 };

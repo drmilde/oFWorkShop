@@ -2,6 +2,7 @@
 #define _GUI_DRAWABLE_h_
 
 #include <iostream>
+#include "ofMain.h"
 
 class GuiDrawable {
 
@@ -19,6 +20,7 @@ class GuiDrawable {
   int height;
 
   std::string name;
+  ofTrueTypeFont smallFont;
 
 };
 
