@@ -42,11 +42,14 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
+  gui.setActive(false);
+
   if (key == 't'){
     imgRef = 0;
   } 
   else if (key == 'g') {
     imgRef = 1;
+    gui.setActive(true);
   }
   else if (key == 'w') {
     imgRef = 2;

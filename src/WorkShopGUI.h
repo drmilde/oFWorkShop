@@ -3,19 +3,20 @@
 
 #include "ofMain.h"
 #include "ofTrueTypeFont.h"
+#include "Page.h"
 #include "Knob.h"
 #include "BinarySwitch.h"
 #include "HorizontalSlider.h"
 #include "VerticalSlider.h"
 
-class WorkShopGUI {
+class WorkShopGUI : public Page {
  public:
   WorkShopGUI();
   virtual ~WorkShopGUI();
 
   void draw();
   void mouseDragged(int msx, int msy, int x, int y, int button);
-  void mousePressed(int x, int y, int button);
+  void mousePressed(int msx, int msy, int button);
 
  private:
   void drawTitle(std::string txt, int x, int y, int w, int h);
@@ -44,8 +45,6 @@ class WorkShopGUI {
   BinarySwitch vcfModPolaritySwitch = BinarySwitch("vcf mod polarity");
   BinarySwitch lfoWaveFormSwitch = BinarySwitch("lfo wave form");
   BinarySwitch egSustainSwitch = BinarySwitch("eg sustain");
-  vector <Knob> knobs;
-  vector <BinarySwitch> switches;
 
 };
 

@@ -6,8 +6,15 @@
 #include "GuiDrawable.h"
 
 class Selectable : public GuiDrawable {
+
  public:
-  Selectable(std::string name);
+  enum TYPE {KNOB, 
+	     BINARY_SWITCH, 
+	     HSLIDER, VSLIDER, 
+	     XYSELECT
+  }; 
+
+  Selectable(std::string name, TYPE t);
   virtual ~Selectable();
 
   void setBoundingBox (int x, int y, int w, int h);
@@ -16,11 +23,14 @@ class Selectable : public GuiDrawable {
   bool isSelected();
   bool inside(int x, int y);
   void draw();
+  TYPE getType();
+
 
  private:
   ofRectangle box;
   ofRectangle sensitiveField;
   bool selected = false;
+  TYPE type;
 
 };
 

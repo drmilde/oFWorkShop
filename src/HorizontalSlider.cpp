@@ -13,7 +13,7 @@ HorizontalSlider::HorizontalSlider(std::string name) : HorizontalSlider (name,
 
 HorizontalSlider::HorizontalSlider(std::string name,
 				   float value, float min, float max
-				   ): Slider (name) {
+				   ): Slider (name, HSLIDER) {
   low = min;
   high = max;
   setValue(low);

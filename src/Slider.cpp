@@ -1,11 +1,12 @@
 #include "Slider.h"
 
-Slider::Slider(std::string name) : Slider (name, 0, 1) {
+Slider::Slider(std::string name, TYPE t) : Slider (name, 0, 1, t) {
   // do something useful here
 }
 
 Slider::Slider(std::string name, 
-	       float min, float max) : Selectable (name) {
+	       float min, float max,
+	       TYPE t) : Selectable (name, t) {
   low = min;
   high = max;  
   smallFont.load("Courier-Sans.ttf", 18);

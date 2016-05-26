@@ -1,8 +1,9 @@
 #include "Selectable.h"
 
-Selectable::Selectable(std::string n) : GuiDrawable(n, 0,0,0,0) {
+Selectable::Selectable(std::string n, TYPE t) : GuiDrawable(n, 0,0,0,0) {
   // do something useful here
   setBoundingBox(0,0,0,0); // no bounding box;
+  type = t;
 }
 
 Selectable::~Selectable() {
@@ -31,6 +32,10 @@ bool Selectable::isSelected() {
 bool Selectable::inside(int x, int y) {
   selected = sensitiveField.inside(x,y);
   return selected;
+}
+
+Selectable::TYPE Selectable::getType() {
+  return type;
 }
 
 void Selectable::draw() {

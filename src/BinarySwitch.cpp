@@ -8,7 +8,7 @@ BinarySwitch::BinarySwitch(std::string name) : BinarySwitch (name,0,1,
 BinarySwitch::BinarySwitch(std::string name, 
 			   float low, float hi, 
 			   std::string lowStrng, 
-			   std::string hiStrng) : Selectable(name) {
+			   std::string hiStrng) : Selectable(name, BINARY_SWITCH) {
   lowString = lowStrng;
   hiString = hiStrng;
   lowValue = low;

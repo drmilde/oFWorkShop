@@ -5,7 +5,8 @@ Knob::Knob(std::string name) : Knob (name, 0.0, 0.0, 1.0, 0, 359) {
 }
 
 Knob::Knob(std::string n, float value, float min, 
-	   float max, int start, int end): Selectable (n){
+	   float max, int start, int end): Selectable (n, KNOB){
+
   strip.load("blue-yellow-linear.png");
   strip.load("green-metal-yellow.png");
   strip.load("black-yellow-metal.png");

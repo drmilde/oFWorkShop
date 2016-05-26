@@ -15,7 +15,9 @@ class XYSelect : public Selectable {
   void setClickPosition(int x, int y);
 
  private:
-  void drawValueStringAt (int x, int y, float value);
+  void drawValueStringAt (std::string init,
+			  int x, int y, float value, 
+			  int maxX, int maxY);
   void drawNameStringAt (int x, int y);
 
   int relX = 0;

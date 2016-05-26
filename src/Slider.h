@@ -7,8 +7,8 @@
 class Slider : public Selectable {
 
  public:
-  Slider(std::string name);
-  Slider(std::string name, float min, float max);
+  Slider(std::string name, TYPE t);
+  Slider(std::string name, float min, float max, TYPE t);
   virtual ~Slider();
 
   virtual void draw() = 0; // has to be implemented by sub classes

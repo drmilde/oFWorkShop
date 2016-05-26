@@ -4,7 +4,7 @@ XYSelect::XYSelect() : XYSelect("Ede Zimmermann") {
   // do something useful here
 }
 
-XYSelect::XYSelect(std::string name) : Selectable(name) {
+XYSelect::XYSelect(std::string name) : Selectable(name, XYSELECT) {
   // do something useful here
   smallFont.load("Courier-Sans.ttf", 18);
 }
@@ -25,9 +25,16 @@ void XYSelect::draw() {
   ofDrawLine(posx, posy + relY , posx + width, posy + relY);
   ofDrawLine(posx + relX, posy, posx + relX, posy + height);
 
-  // draw the strings
-  drawValueStringAt(posx + relX, posy -5, valX);
-  drawValueStringAt(posx, posy + relY + 25, valY);
+  // draw the x/y strings
+  drawValueStringAt("x=",
+		    posx + relX, posy -5, 
+		    valX, posx+width, posy+height);
+  drawValueStringAt("y=", 
+		    posx, posy + relY + 25, 
+		    valY, posx+width, posy+height);
+
+  // draw name
+  ofSetColor(255);
   drawNameStringAt(posx, posy - 35);
   ofPopStyle();
 
@@ -49,14 +56,32 @@ void XYSelect::setClickPosition (int x, int y) {
 }
 
 
-void XYSelect::drawValueStringAt (int x, int y, float value) {
+void XYSelect::drawValueStringAt (std::string init, 
+				  int x, int y, float value, 
+				  int maxX, int maxY) {
   std::string out = ofToString(fabs(value),2);
   if (value >= 0) {
     out = "+" + out;
   } else {
     out = "-" + out;
   }
-  smallFont.drawString(out,x,y);
+
+  // add init
+  out = init + out;
+  // calculate width/height
+  ofRectangle box = smallFont.getStringBoundingBox(out,0,0);
+
+  // dont cross right/lower boundary
+  if ((x + box.getWidth()) > maxX) {
+    smallFont.drawString(out,maxX - box.getWidth(),y);
+  } else {
+    if (y > (maxY - box.getHeight())) {
+      smallFont.drawString(out,x, maxY - box.getHeight());
+    } else {
+      smallFont.drawString(out,x,y);
+    }
+  }
+
 }
 
 void XYSelect::drawNameStringAt (int x, int y) {

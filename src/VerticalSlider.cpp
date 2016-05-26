@@ -13,7 +13,7 @@ VerticalSlider::VerticalSlider(std::string name) : VerticalSlider (name,
 
 VerticalSlider::VerticalSlider(std::string name,
 				   float value, float min, float max
-				   ): Slider (name) {
+			       ): Slider (name, VSLIDER) {
   low = min;
   high = max;
   setValue(low);
