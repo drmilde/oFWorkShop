@@ -1,8 +1,8 @@
 #include "WorkShopGUI.h"
 
 WorkShopGUI::WorkShopGUI() {
-  myfont.load("Courier-Sans.ttf", 28);
-  smallfont.load("Courier-Sans.ttf", 18);
+  standardFont.load("Courier-Sans.ttf", 28);
+  smallFont.load("Courier-Sans.ttf", 18);
 
   //knobs
   freqKnob =  Knob("freq", 0.0, 0, 1, 220, 140);
@@ -96,13 +96,13 @@ void WorkShopGUI::draw() {
   ofDrawRectRounded(1000 + 10 + 10, 10, 200, 250, 10);
 
   // beschriftung erste Zeile
-  smallfont.drawString("FREQ", 50 + 20, 240);
-  smallfont.drawString("WAVE", 180 + 50 + 20, 240);
-  smallfont.drawString("PWM", 400 + 20, 240);
+  smallFont.drawString("FREQ", 50 + 20, 240);
+  smallFont.drawString("WAVE", 180 + 50 + 20, 240);
+  smallFont.drawString("PWM", 400 + 20, 240);
 
-  smallfont.drawString("CUTOFF", 600 + 50 + 20, 240);
-  smallfont.drawString("RES", 900, 240);
-  smallfont.drawString("MODE", 1090, 240);  
+  smallFont.drawString("CUTOFF", 600 + 50 + 20, 240);
+  smallFont.drawString("RES", 900, 240);
+  smallFont.drawString("MODE", 1090, 240);  
 
   // zweite Zeile
   drawTitle("VCO MOD", 10 + 10, 250 + 20 + 30, 175, 40);
@@ -111,13 +111,13 @@ void WorkShopGUI::draw() {
   ofDrawRectRounded(600 + 10 + 10,  250 + 10 + 10, 600, 250, 10);
 
   // beschriftung zweite Zeile
-  smallfont.drawString("SOURCE", 50 + 20, 500);
-  smallfont.drawString("AMOUNT", 180 + 50 + 20, 500);
-  smallfont.drawString("DEST", 400 + 20, 500);
+  smallFont.drawString("SOURCE", 50 + 20, 500);
+  smallFont.drawString("AMOUNT", 180 + 50 + 20, 500);
+  smallFont.drawString("DEST", 400 + 20, 500);
 
-  smallfont.drawString("SOURCE", 600 + 50 + 20, 500);
-  smallfont.drawString("AMOUNT", 875, 500);
-  smallfont.drawString("POLARITY", 1050, 500);
+  smallFont.drawString("SOURCE", 600 + 50 + 20, 500);
+  smallFont.drawString("AMOUNT", 875, 500);
+  smallFont.drawString("POLARITY", 1050, 500);
 
   // dritte Zeile
   drawTitle("LFO", 10 + 10, 500 + 40 + 20, 90, 40);
@@ -126,13 +126,13 @@ void WorkShopGUI::draw() {
   ofDrawRectRounded(600 + 10 + 10,  500 + 10 + 20, 600, 250, 10);
 
   // Beschriftung dritte zeile
-  smallfont.drawString("RATE", 110, 760);
-  smallfont.drawString("GLIDE", 270, 760);
-  smallfont.drawString("WAVE", 400 + 20, 760);
+  smallFont.drawString("RATE", 110, 760);
+  smallFont.drawString("GLIDE", 270, 760);
+  smallFont.drawString("WAVE", 400 + 20, 760);
 
-  smallfont.drawString("SUSTAIN", 600 + 50 + 20, 760);
-  smallfont.drawString("ATTACK", 875, 760);
-  smallfont.drawString("DECAY", 1050, 760);
+  smallFont.drawString("SUSTAIN", 600 + 50 + 20, 760);
+  smallFont.drawString("ATTACK", 875, 760);
+  smallFont.drawString("DECAY", 1050, 760);
   ofPopStyle();
 
   // draw the knobs
@@ -150,7 +150,7 @@ void WorkShopGUI::drawTitle(std::string txt, int x, int y, int w, int h) {
 		    10, 0, 10, 0);
   
   ofSetColor(0,0,0);
-  myfont.drawString(txt, x, y);
+  standardFont.drawString(txt, x, y);
   ofPopStyle();
 }
 
@@ -158,14 +158,10 @@ void WorkShopGUI::drawTitle(std::string txt, int x, int y, int w, int h) {
 // callbacks
 void WorkShopGUI::mouseDragged(int msx, int msy, 
 			       int x, int y, int button){
-
   Page::mouseDragged(msx, msy, x, y,  button);
-
 }
 
 void WorkShopGUI::mousePressed(int msx, int msy, int button){
-
   Page::mousePressed(msx, msy, button);
-
 }
 

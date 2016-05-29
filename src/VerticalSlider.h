@@ -17,6 +17,7 @@ class VerticalSlider: public Slider {
   void setValue(float value);
   void changeValue(float delta);
   void draw();
+  void drawAt(int x, int y);
 
  private:
   int handleY;

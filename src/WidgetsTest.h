@@ -3,13 +3,16 @@
 
 #include "ofMain.h"
 #include "ofTrueTypeFont.h"
+#include "GuiDrawable.h"
 #include "Knob.h"
 #include "BinarySwitch.h"
 #include "HorizontalSlider.h"
 #include "VerticalSlider.h"
 #include "XYSelect.h"
+#include "Grid.h"
+#include "ToggleButton.h"
 
-class WidgetsTest {
+class WidgetsTest : public GuiDrawable{
 
  public:
   WidgetsTest();
@@ -19,8 +22,6 @@ class WidgetsTest {
   void mousePressed(int x, int y);
 
  private:
-  ofTrueTypeFont myfont;
-  ofTrueTypeFont smallfont;
 
   // knobs
   Knob freqKnob = Knob("freq");
@@ -31,8 +32,13 @@ class WidgetsTest {
   VerticalSlider vs;
 
   // XYSelect
-
   XYSelect xy;
+
+  // Grid
+  Grid grid;
+
+  // ToggleButton
+  ToggleButton tb;
 };
 
 

@@ -1,9 +1,9 @@
 #include "WidgetsTest.h"
 
-WidgetsTest::WidgetsTest() {
+WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   // do something useful here
-  myfont.load("Courier-Sans.ttf", 28);
-  smallfont.load("Courier-Sans.ttf", 18);
+  standardFont.load("Courier-Sans.ttf", 28);
+  smallFont.load("Courier-Sans.ttf", 18);
 
   //knobs
   freqKnob =  Knob("freq", 0.0, 0, 1, 220, 140);
@@ -25,6 +25,29 @@ WidgetsTest::WidgetsTest() {
   // test XYSelect
   xy  = XYSelect();
   xy.setBoundingBox(200,300,300,300,1,1);
+
+  // test Grid
+  grid = Grid(7,6);
+  grid.setPosition(670, 400, 3, 1);
+
+  grid.addRowString("KBD CV out");
+  grid.addRowString("TRIG out");
+  grid.addRowString("GATE out");
+  grid.addRowString("EG out");
+  grid.addRowString("LFO out");
+  grid.addRowString("VCF out");
+  grid.addRowString("VCO out");
+
+  grid.addColString("VCA in");
+  grid.addColString("VCF in");
+  grid.addColString("VCO LIN in");
+  grid.addColString("VCO EXP in");
+  grid.addColString("LFO in");
+  grid.addColString("VCF AUD in");
+
+  // test ToggleButton
+  tb = ToggleButton();
+  tb.setBoundingBox(630, 200, 50, 50,1,1);  
 }
 
 WidgetsTest::~WidgetsTest() {
@@ -45,6 +68,12 @@ void WidgetsTest::draw() {
 
   // XYSelect
   xy.draw();
+
+  // Grid
+  grid.draw();
+
+  // ToggleButton
+  tb.draw();
 }
 
 
@@ -82,10 +111,15 @@ void WidgetsTest::drag(int msx, int msy, int x, int y) {
 
 
   // XYSelect
-
   if (xy.isSelected()) {
     xy.setClickPosition(x,y);
   }
+
+  // drag grid slider
+  if (grid.isSelected()) {
+    grid.drag(msx, msy, x, y); 
+  }
+
 }
 
 void WidgetsTest::mousePressed(int x, int y) {
@@ -99,7 +133,6 @@ void WidgetsTest::mousePressed(int x, int y) {
     vcoWaveFormSwitch.setSelected(false);  
   }  
 
-
   // HORIZONTAL/VERTICAL SLIDER
   if (hs.inside(x,y)) {
     hs.setClickPosition(x);
@@ -109,9 +142,21 @@ void WidgetsTest::mousePressed(int x, int y) {
   }
 
   // XYSelect
-
   if (xy.inside(x,y)) {
     xy.setClickPosition(x,y);
+  }
+
+  // ToggleButton
+  if (tb.inside(x,y)) {
+    if (tb.isSelected()) {
+      tb.toggle();
+      tb.setSelected(false);  
+    }  
+  }
+
+  // Grid
+  if (grid.inside(x,y)) {
+    grid.toggle(x,y);
   }
 
 

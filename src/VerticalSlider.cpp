@@ -42,15 +42,20 @@ void VerticalSlider::changeValue(float delta) {
 
 
 void VerticalSlider::draw() {
-  ofPushStyle();
-  ofDrawRectangle(posx, posy, width, height);
-  imgHandle.draw((posx - (imgHandle.getWidth()/2) + width/2),
-		 handleY - (imgHandle.getHeight()/2));
+  drawAt(0,0);
+}
 
-  drawNameStringAt(posx - 35, posy - 22 ); // MAGIC NUMBER: distance = 35/22;
-  drawValueStringAt(posx - 35, posy + height + (imgHandle.getHeight()/2) + 22 ); // MAGIC NUMBER: distance = 35/25;
+void VerticalSlider::drawAt(int x, int y) {
+  ofPushStyle();
+  ofDrawRectangle(x + posx, y + posy, width, height);
+  imgHandle.draw((x+posx - (imgHandle.getWidth()/2) + width/2),
+		 y + handleY - (imgHandle.getHeight()/2));
+
+  drawNameStringAt(x + posx - 35, y + posy - 22 ); // MAGIC NUMBER: distance = 35/22;
+  drawValueStringAt(x + posx - 35, y + posy + height + (imgHandle.getHeight()/2) + 22 ); // MAGIC NUMBER: distance = 35/25;
   ofPopStyle();
 
   //Selectable::draw();
 }
+
 

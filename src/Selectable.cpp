@@ -34,6 +34,16 @@ bool Selectable::inside(int x, int y) {
   return selected;
 }
 
+bool Selectable::insideAt(int x, int y, int ox, int oy) {
+  sensitiveAtField = ofRectangle(sensitiveField.x + ox, 
+				 sensitiveField.y + oy, 
+				 sensitiveField.getWidth(), 
+				 sensitiveField.getHeight());
+  selected = sensitiveAtField.inside(x,y);
+  return selected;
+}
+
+
 Selectable::TYPE Selectable::getType() {
   return type;
 }

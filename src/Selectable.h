@@ -11,7 +11,9 @@ class Selectable : public GuiDrawable {
   enum TYPE {KNOB, 
 	     BINARY_SWITCH, 
 	     HSLIDER, VSLIDER, 
-	     XYSELECT
+	     XYSELECT,
+	     TOGGLE_BUTTON,
+	     GRID
   }; 
 
   Selectable(std::string name, TYPE t);
@@ -22,6 +24,7 @@ class Selectable : public GuiDrawable {
   void setSelected(bool sel);
   bool isSelected();
   bool inside(int x, int y);
+  bool insideAt(int x, int y, int ox, int oy);
   void draw();
   TYPE getType();
 
@@ -29,6 +32,7 @@ class Selectable : public GuiDrawable {
  private:
   ofRectangle box;
   ofRectangle sensitiveField;
+  ofRectangle sensitiveAtField;
   bool selected = false;
   TYPE type;
 

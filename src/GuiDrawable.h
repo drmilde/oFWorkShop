@@ -20,6 +20,8 @@ class GuiDrawable {
   int height;
 
   std::string name;
+  // text output
+  ofTrueTypeFont standardFont;
   ofTrueTypeFont smallFont;
 
 };

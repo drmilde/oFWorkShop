@@ -21,10 +21,6 @@ class WorkShopGUI : public Page {
  private:
   void drawTitle(std::string txt, int x, int y, int w, int h);
   
-  // text output
-  ofTrueTypeFont myfont;
-  ofTrueTypeFont smallfont;
-
   // knobs
   Knob freqKnob = Knob("freq");
   Knob pwmKnob = Knob("pwm");
