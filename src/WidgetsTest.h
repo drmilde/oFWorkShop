@@ -11,6 +11,8 @@
 #include "XYSelect.h"
 #include "Grid.h"
 #include "ToggleButton.h"
+#include "RadioButtonGroup.h"
+#include "TextButton.h"
 
 class WidgetsTest : public GuiDrawable{
 
@@ -39,6 +41,14 @@ class WidgetsTest : public GuiDrawable{
 
   // ToggleButton
   ToggleButton tb;
+
+  // RadioButtonGroup
+  RadioButtonGroup rg;
+
+  // TextButton
+  TextButton txtb;
+
+
 };
 
 

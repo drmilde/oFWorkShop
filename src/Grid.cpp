@@ -55,7 +55,7 @@ void Grid::draw() {
   ofDrawRectangle(posx, posy, width, height);
   
   for (unsigned int i = 0; i < buttons.size(); i++) {
-    buttons[i].drawAt(posx, posy);
+    buttons[i].drawAt(posx, posy, (i==current));
   }
 
   // draw strings
@@ -85,6 +85,7 @@ void Grid::draw() {
 }
 
 void Grid::toggle(int msx, int msy) {
+  
   for (unsigned int i = 0; i < buttons.size(); i++) {
     if (buttons[i].insideAt(msx, msy, posx, posy)) {
 
@@ -92,6 +93,8 @@ void Grid::toggle(int msx, int msy) {
 	// toggle button and deselect
 	buttons[i].toggle();
 	buttons[i].setSelected(false);  
+
+	current = i;
 
 	// transfer value to slider
 	vs.setValue(buttons[i].getValue());
@@ -106,6 +109,9 @@ void Grid::toggle(int msx, int msy) {
 void Grid::drag(int msx, int msy, int x, int y) {
   if (vs.inside(x,y)) {
     setClickPosition(y);
+    if (current >= 0) {
+      buttons[current].setValue(vs.getValue());
+    }
   }
 }
 

@@ -12,7 +12,7 @@ class ToggleButton : public Selectable {
   virtual ~ToggleButton();
 
   void draw();
-  void drawAt(int x, int y);
+  void drawAt(int x, int y, bool selected);
   void toggle();
 
   void setGridID(int c, int r);
@@ -20,6 +20,9 @@ class ToggleButton : public Selectable {
   int getGridRow();
   void setValue (float v);
   float getValue ();
+
+  void setOn();
+  void setOff();
 
 
  private:

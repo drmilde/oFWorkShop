@@ -48,6 +48,22 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   // test ToggleButton
   tb = ToggleButton();
   tb.setBoundingBox(630, 200, 50, 50,1,1);  
+
+  // RadioButtonGroup
+  rg = RadioButtonGroup(6);
+  rg.setPosition(630, 100, 3, 1);
+
+  rg.addColString("Sine");
+  rg.addColString("Square");
+  rg.addColString("Triangle");
+  rg.addColString("Pulse");
+  rg.addColString("Saw");
+  rg.addColString("SuperSaw");
+
+  // TextButton
+  txtb = TextButton("Reset");
+  txtb.setBoundingBox(1030, 100, 80, 30,1,1);  
+
 }
 
 WidgetsTest::~WidgetsTest() {
@@ -74,6 +90,12 @@ void WidgetsTest::draw() {
 
   // ToggleButton
   tb.draw();
+
+  // RadioButtonGroup
+  rg.draw();
+
+  // TextButton
+  txtb.draw();
 }
 
 
@@ -157,6 +179,11 @@ void WidgetsTest::mousePressed(int x, int y) {
   // Grid
   if (grid.inside(x,y)) {
     grid.toggle(x,y);
+  }
+
+  // RadioButtonGroup
+  if (rg.inside(x,y)) {
+    rg.toggle(x,y);
   }
 
 

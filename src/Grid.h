@@ -30,6 +30,7 @@ class Grid : public Selectable {
   vector <std::string> colStrings;
 
   VerticalSlider vs;
+  int current = -1;
 
 };
 

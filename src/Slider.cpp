@@ -26,6 +26,9 @@ void Slider::setValue(float v) {
   value = max(value, low);
 }
 
+float Slider::getValue() {
+  return value;
+}
 
 void Slider::drawValueStringAt (int x, int y) {
   std::string out = ofToString(fabs(value),3);

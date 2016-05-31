@@ -12,6 +12,7 @@ class Slider : public Selectable {
   virtual ~Slider();
 
   virtual void draw() = 0; // has to be implemented by sub classes
+  float getValue();
 
  protected:
   void setValue(float v);
