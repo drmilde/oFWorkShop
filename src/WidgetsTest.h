@@ -13,6 +13,7 @@
 #include "ToggleButton.h"
 #include "RadioButtonGroup.h"
 #include "TextButton.h"
+#include "GuiHelper.h"
 
 class WidgetsTest : public GuiDrawable{
 
@@ -47,6 +48,9 @@ class WidgetsTest : public GuiDrawable{
 
   // TextButton
   TextButton txtb;
+
+  // GuiHelper
+  GuiHelper gh;
 
 
 };

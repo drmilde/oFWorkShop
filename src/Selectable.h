@@ -15,6 +15,7 @@ class Selectable : public GuiDrawable {
 	     TOGGLE_BUTTON,
 	     RADIO_BUTTON_GROUP,
 	     TEXT_BUTTON,
+	     GUI_HELPER,
 	     GRID
   }; 
 

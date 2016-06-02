@@ -96,6 +96,17 @@ void WidgetsTest::draw() {
 
   // TextButton
   txtb.draw();
+
+  // GuiHelper string functions
+
+  ofDrawLine(1035, 150, 1035, 400);
+  GuiHelper::drawSmallStringAt ("small, left", 1035, 200);
+  GuiHelper::drawSmallStringRightAt ("small, right", 1035, 220);
+
+  ofDrawLine(970, 250, 1120, 250);
+  GuiHelper::drawSmallStringLeftCenterAt ("small, left, center", 1035, 250);
+
+
 }
 
 
