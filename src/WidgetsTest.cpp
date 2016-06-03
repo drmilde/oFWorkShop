@@ -98,15 +98,22 @@ void WidgetsTest::draw() {
   txtb.draw();
 
   // GuiHelper string functions
+  ofDrawLine(1035, 180, 1035, 300);
 
-  ofDrawLine(1035, 150, 1035, 400);
+  ofDrawLine(970, 200, 1120, 200);
   GuiHelper::drawSmallStringAt ("small, left", 1035, 200);
+
+  ofDrawLine(970, 220, 1120, 220);
   GuiHelper::drawSmallStringRightAt ("small, right", 1035, 220);
 
-  ofDrawLine(970, 250, 1120, 250);
-  GuiHelper::drawSmallStringLeftCenterAt ("small, left, center", 1035, 250);
+  ofDrawLine(970, 240, 1120, 240);
+  GuiHelper::drawSmallStringLeftCenterAt ("small, left, center", 1035, 240);
 
+  ofDrawLine(970, 260, 1120, 260);
+  GuiHelper::drawSmallStringRightCenterAt ("small, right, center", 1035, 260);
 
+  ofDrawLine(970, 280, 1120, 280);
+  GuiHelper::drawSmallStringCenterCenterAt ("small, center, center", 1035, 280);
 }
 
 
