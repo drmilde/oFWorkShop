@@ -1,8 +1,8 @@
 #include "WorkShopGUI.h"
 
 WorkShopGUI::WorkShopGUI() {
-  standardFont.load("Courier-Sans.ttf", 28);
-  smallFont.load("Courier-Sans.ttf", 18);
+  //standardFont.load("Courier-Sans.ttf", 28);
+  //smallFont.load("Courier-Sans.ttf", 18);
 
   //knobs
   freqKnob =  Knob("freq", 0.0, 0, 1, 220, 140);

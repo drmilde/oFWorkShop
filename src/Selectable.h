@@ -9,6 +9,7 @@ class Selectable : public GuiDrawable {
 
  public:
   enum TYPE {KNOB, 
+	     PUSH_BUTTON, 
 	     BINARY_SWITCH, 
 	     HSLIDER, VSLIDER, 
 	     XYSELECT,

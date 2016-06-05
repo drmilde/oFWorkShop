@@ -17,7 +17,7 @@ class GuiHelper : public Selectable {
   static void drawSmallStringLeftCenterAt (std::string s, int x, int y);
   static void drawSmallStringRightCenterAt (std::string s, int x, int y);
 
-  static void drawSmallStringCenterCenterAt (std::string s, int x, int y);
+  static void drawStringCCAt (std::string s, int x, int y);
 
  private:
   static ofTrueTypeFont standardFont;

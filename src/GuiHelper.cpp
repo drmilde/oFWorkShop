@@ -41,7 +41,7 @@ void GuiHelper::drawSmallStringRightCenterAt (std::string s, int x, int y) {
 }
 
 
-void GuiHelper::drawSmallStringCenterCenterAt (std::string s, int x, int y) {
+void GuiHelper::drawStringCCAt (std::string s, int x, int y) {
     ofRectangle box = smallFont.getStringBoundingBox(s,0,0);
 
     GuiHelper::smallFont.drawString(s, 

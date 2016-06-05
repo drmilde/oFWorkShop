@@ -2,8 +2,8 @@
 
 WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   // do something useful here
-  standardFont.load("Courier-Sans.ttf", 28);
-  smallFont.load("Courier-Sans.ttf", 18);
+  //standardFont.load("Courier-Sans.ttf", 28);
+  //smallFont.load("Courier-Sans.ttf", 18);
 
   //knobs
   freqKnob =  Knob("freq", 0.0, 0, 1, 220, 140);
@@ -64,6 +64,11 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   txtb = TextButton("Reset");
   txtb.setBoundingBox(1030, 100, 80, 30,1,1);  
 
+  // PushButton
+  pb = PushButton();
+  pb.setBoundingBox(50, 650, 120, 30,1,1);  
+
+
 }
 
 WidgetsTest::~WidgetsTest() {
@@ -113,7 +118,11 @@ void WidgetsTest::draw() {
   GuiHelper::drawSmallStringRightCenterAt ("small, right, center", 1035, 260);
 
   ofDrawLine(970, 280, 1120, 280);
-  GuiHelper::drawSmallStringCenterCenterAt ("small, center, center", 1035, 280);
+  GuiHelper::drawStringCCAt ("small, center, center", 1035, 280);
+
+  // PushButton
+  pb.draw();
+
 }
 
 
@@ -202,6 +211,12 @@ void WidgetsTest::mousePressed(int x, int y) {
   // RadioButtonGroup
   if (rg.inside(x,y)) {
     rg.toggle(x,y);
+  }
+
+  // PushButton
+
+  if (pb.inside(x,y)) {
+    pb.pushed();
   }
 
 
