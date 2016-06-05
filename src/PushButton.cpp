@@ -4,7 +4,6 @@ PushButton::PushButton() : Selectable("Push the button", PUSH_BUTTON) {
   // do something useful here
 }
 
-
 PushButton::~PushButton() {
   // clean up here
 }
@@ -14,8 +13,8 @@ void PushButton::draw() {
   
   ofSetColor(128,0,0);
 
-  long m = pulse.getMillis();
-  if (m < 500) {
+  // check timing ... if pushed, light up grey for 200 millis
+  if (pulse.getMillis() < 200) {
     if (pulse.isRunning()) {
       ofSetColor(128);
     }

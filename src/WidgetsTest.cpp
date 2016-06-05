@@ -61,8 +61,8 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   rg.addColString("SuperSaw");
 
   // TextButton
-  txtb = TextButton("Reset");
-  txtb.setBoundingBox(1030, 100, 80, 30,1,1);  
+  txtb = TextButton("Off", "On");
+  txtb.setBoundingBox(1030, 100, 100, 30,1,1);  
 
   // PushButton
   pb = PushButton();
@@ -202,6 +202,14 @@ void WidgetsTest::mousePressed(int x, int y) {
       tb.setSelected(false);  
     }  
   }
+
+  // TextButton
+  if (txtb.inside(x,y)) {
+    if (txtb.isSelected()) {
+      txtb.toggle();
+    }  
+  }
+
 
   // Grid
   if (grid.inside(x,y)) {
