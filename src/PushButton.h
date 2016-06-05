@@ -4,6 +4,7 @@
 #include "ofMain.h"
 #include "Selectable.h"
 #include "GuiHelper.h"
+#include "Pulse.h"
 
 class PushButton : public Selectable {
 
@@ -17,7 +18,7 @@ class PushButton : public Selectable {
 
  private:
   bool hit = false;
-  int count = 0;
+  Pulse pulse;
 
 };
 

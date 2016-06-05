@@ -11,14 +11,16 @@ PushButton::~PushButton() {
 
 void PushButton::draw() {
   ofPushStyle();
+  
+  ofSetColor(128,0,0);
 
-  if (count > 0) {
-    ofSetColor(128);
-    count--;;
-  } else {
-    ofSetColor(128,0,0);
-    count = 0;
-  }
+  long m = pulse.getMillis();
+  if (m < 500) {
+    if (pulse.isRunning()) {
+      ofSetColor(128);
+    }
+  } 
+
   ofDrawRectangle(posx, posy, width, height);
 
   ofSetColor(255);
@@ -34,6 +36,6 @@ void PushButton::pushed() {
 
 void PushButton::setPushed(bool p) {
   hit = p;
-  count = 50;
+  pulse.start();
 }
 
