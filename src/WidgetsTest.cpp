@@ -7,7 +7,7 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
 
   //knobs
   freqKnob =  Knob("freq", 0.0, 0, 1, 220, 140);
-  freqKnob.setBoundingBox(55,80, 32*3, 32*3);
+  freqKnob.setBoundingBox(55, 70, 32*3, 32*3);
 
   // binary switches
   vcoWaveFormSwitch = BinarySwitch("vco wave form", 0, 1, "Pulse", "Saw");
@@ -19,16 +19,16 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   hs.setValue(0);
 
   vs  = VerticalSlider("Attack", 0, 0, 127);
-  vs.setBoundingBox(560,100,20,200,3,1);
+  vs.setBoundingBox(430,120,20,200,3,1);
   vs.setValue(0);
 
   // test XYSelect
   xy  = XYSelect();
-  xy.setBoundingBox(200,250,300,300,1,1);
+  xy.setBoundingBox(30,250,300,300,1,1);
 
   // test Grid
   grid = Grid(7,6);
-  grid.setPosition(670, 400, 3, 1);
+  grid.setPosition(500, 400, 3, 1);
 
   grid.addRowString("KBD CV out");
   grid.addRowString("TRIG out");
@@ -66,11 +66,15 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
 
   // PushButton
   pb = PushButton();
-  pb.setBoundingBox(50, 650, 120, 30,1,1);  
+  pb.setBoundingBox(30, 750, 120, 30,1,1);  
 
   // VUMeter
   vu = VUMeter();
-  vu.setBoundingBox(200, 570, 240, 160,1,1);
+  vu.setBoundingBox(30, 570, 240, 160,1,1);
+
+  // ColorScheme
+  cs = ColorScheme();
+  cs.setBoundingBox(950,330, 150,100, 1,1);
 
 
 }
@@ -129,6 +133,9 @@ void WidgetsTest::draw() {
 
   // VUMeter
   vu.draw();
+
+  // ColorScheme
+  cs.draw();
 
 }
 

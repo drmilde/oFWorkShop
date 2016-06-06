@@ -4,7 +4,6 @@ VUMeter::VUMeter() {
   // do something useful here
 }
 
-
 VUMeter::~VUMeter() {
   // clean up here
 }
@@ -52,9 +51,9 @@ void VUMeter::draw() {
   ofDrawCircle(x,y+30,10);
 
 
+  // display current value
   ofSetColor(255);
   GuiHelper::drawStringAt ("+" + ofToString(getValue(),3), posx + 10, posy + height - 10);
-
 
 
   ofPopStyle();

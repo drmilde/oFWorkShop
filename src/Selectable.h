@@ -18,6 +18,9 @@ class Selectable : public GuiDrawable {
 	     TEXT_BUTTON,
 	     GUI_HELPER,
 	     METER,
+	     VUMETER,
+	     EG_EDITOR,
+	     COLOR_SCHEME,
 	     GRID
   }; 
 
