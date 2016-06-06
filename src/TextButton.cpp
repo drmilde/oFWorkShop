@@ -3,6 +3,7 @@
 TextButton::TextButton() : TextButton("message in a bottle", "sting") {
   // do something useful here
 }
+
 TextButton::TextButton(std::string text, 
 		       std::string text1) : Selectable(text, TEXT_BUTTON) {
   label = text;

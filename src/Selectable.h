@@ -17,6 +17,7 @@ class Selectable : public GuiDrawable {
 	     RADIO_BUTTON_GROUP,
 	     TEXT_BUTTON,
 	     GUI_HELPER,
+	     METER,
 	     GRID
   }; 
 

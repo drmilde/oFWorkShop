@@ -11,7 +11,7 @@ class GuiHelper : public Selectable {
   GuiHelper();
   virtual ~GuiHelper();
 
-  static void drawSmallStringAt (std::string s, int x, int y);
+  static void drawStringAt (std::string s, int x, int y);
   static void drawSmallStringRightAt (std::string s, int x, int y);
 
   static void drawSmallStringLeftCenterAt (std::string s, int x, int y);

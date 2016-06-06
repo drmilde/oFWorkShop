@@ -2,15 +2,6 @@
 
 RectAngleManager::RectAngleManager() {
   // do something useful here
-  addRect(10,10,100,100);
-  addRect(200,200,100,100);
-  addRect(300,300,100,100);
-  addRect(500,500,100,100);
-
-  std::vector<ofRectangle*>::iterator i;
-  for (i = rects.begin(); i != rects.end(); i++) {
-    std::cout << (*i)->inside(50,250) << std::endl;
-  }
 }
 
 RectAngleManager::~RectAngleManager() {

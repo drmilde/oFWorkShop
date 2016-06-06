@@ -24,7 +24,7 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
 
   // test XYSelect
   xy  = XYSelect();
-  xy.setBoundingBox(200,300,300,300,1,1);
+  xy.setBoundingBox(200,250,300,300,1,1);
 
   // test Grid
   grid = Grid(7,6);
@@ -68,6 +68,10 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   pb = PushButton();
   pb.setBoundingBox(50, 650, 120, 30,1,1);  
 
+  // VUMeter
+  vu = VUMeter();
+  vu.setBoundingBox(200, 570, 240, 160,1,1);
+
 
 }
 
@@ -106,7 +110,7 @@ void WidgetsTest::draw() {
   ofDrawLine(1035, 180, 1035, 300);
 
   ofDrawLine(970, 200, 1120, 200);
-  GuiHelper::drawSmallStringAt ("small, left", 1035, 200);
+  GuiHelper::drawStringAt ("small, left", 1035, 200);
 
   ofDrawLine(970, 220, 1120, 220);
   GuiHelper::drawSmallStringRightAt ("small, right", 1035, 220);
@@ -122,6 +126,9 @@ void WidgetsTest::draw() {
 
   // PushButton
   pb.draw();
+
+  // VUMeter
+  vu.draw();
 
 }
 

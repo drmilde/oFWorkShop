@@ -13,7 +13,7 @@ GuiHelper::~GuiHelper() {
   // clean up here 
 }
 
-void GuiHelper::drawSmallStringAt (std::string s, int x, int y) {
+void GuiHelper::drawStringAt (std::string s, int x, int y) {
   GuiHelper::smallFont.drawString(s, x, y );
 }
 

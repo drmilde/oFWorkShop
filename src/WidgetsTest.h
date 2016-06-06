@@ -15,6 +15,7 @@
 #include "TextButton.h"
 #include "GuiHelper.h"
 #include "PushButton.h"
+#include "VUMeter.h"
 
 class WidgetsTest : public GuiDrawable{
 
@@ -55,6 +56,9 @@ class WidgetsTest : public GuiDrawable{
 
   // PushButton
   PushButton pb;
+
+  // VUMeter
+  VUMeter vu;
 
 
 };
