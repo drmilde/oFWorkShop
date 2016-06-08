@@ -3,6 +3,7 @@
 // set scope for statc variables
 ofTrueTypeFont GuiHelper::standardFont;
 ofTrueTypeFont GuiHelper::smallFont;
+CS GuiHelper::colors;
 
 GuiHelper::GuiHelper() : Selectable ("Help, I need somebody", GUI_HELPER){
   GuiHelper::standardFont.load("Courier-Sans.ttf", 28);
@@ -49,4 +50,52 @@ void GuiHelper::drawStringCCAt (std::string s, int x, int y) {
 				    y + (box.getHeight()/2));
 
 }
+
+// color functions
+
+ofColor GuiHelper::BG0() {
+  return GuiHelper::colors.getDkBck();
+}
+
+ofColor GuiHelper::BG1() {
+  return GuiHelper::colors.getMdBck();
+}
+
+ofColor GuiHelper::BG2() {
+  return GuiHelper::colors.getLtBck();
+}
+
+ofColor GuiHelper::BG3() {
+  return GuiHelper::colors.getLtrBck();
+}
+
+ofColor GuiHelper::BG4() {
+  return GuiHelper::colors.getFlBck();
+}
+
+ofColor GuiHelper::FG0() {
+  return GuiHelper::colors.getDkFor();
+}
+
+ofColor GuiHelper::FG1() {
+  return GuiHelper::colors.getMdFor();
+}
+
+ofColor GuiHelper::FG2() {
+  return GuiHelper::colors.getLtFor();
+}
+
+ofColor GuiHelper::FG3() {
+  return GuiHelper::colors.getLtrFor();
+}
+
+ofColor GuiHelper::FG4() {
+  return GuiHelper::colors.getFlFor();
+}
+
+ofColor GuiHelper::TXT0() {
+  return GuiHelper::colors.getTextCol();
+}
+
+
 

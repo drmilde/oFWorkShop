@@ -5,7 +5,6 @@ ColorScheme::ColorScheme() : ColorScheme ("dark star") {
 }
 
 ColorScheme::ColorScheme(std::string name) : Selectable(name, COLOR_SCHEME) {
-
   darkBackground = ofColor(63,63,63);
   middleBackground = ofColor(88,88,88);
   lightBackground = ofColor(127,127,127);
@@ -15,7 +14,6 @@ ColorScheme::ColorScheme(std::string name) : Selectable(name, COLOR_SCHEME) {
   lightForeground = ofColor(127,0,0);
   
   textColor = ofColor(255,255,255);
-
 }
 
 ColorScheme::~ColorScheme() {

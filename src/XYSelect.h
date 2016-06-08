@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ofMain.h"
 #include "Selectable.h"
+#include "GuiHelper.h"
 
 class XYSelect : public Selectable {
  public:
@@ -25,6 +26,7 @@ class XYSelect : public Selectable {
 
   float valX = 0;
   float valY = 0;
+  
 };
 
 

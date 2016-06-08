@@ -17,11 +17,13 @@ XYSelect::~XYSelect() {
 void XYSelect::draw() {
   ofPushStyle();
   // draw the background
-  ofSetColor(88,88,88);
+  ofSetColor(GuiHelper::BG0());
+
   ofDrawRectangle(posx, posy, width, height);
 
   // draw the cross
   ofSetColor(255,0,0);
+  ofSetColor(GuiHelper::FG4());
   ofDrawLine(posx, posy + relY , posx + width, posy + relY);
   ofDrawLine(posx + relX, posy, posx + relX, posy + height);
 
@@ -34,7 +36,7 @@ void XYSelect::draw() {
 		    valY, posx+width, posy+height);
 
   // draw name
-  ofSetColor(255);
+  ofSetColor(GuiHelper::TXT0());
   drawNameStringAt(posx, posy - 35);
   ofPopStyle();
 
