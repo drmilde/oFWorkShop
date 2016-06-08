@@ -11,18 +11,18 @@ PushButton::~PushButton() {
 void PushButton::draw() {
   ofPushStyle();
   
-  ofSetColor(128,0,0);
+  ofSetColor(GuiHelper::FG2());
 
   // check timing ... if pushed, light up grey for 200 millis
   if (pulse.getMillis() < 200) {
     if (pulse.isRunning()) {
-      ofSetColor(128);
+      ofSetColor(GuiHelper::BG2());
     }
   } 
 
   ofDrawRectangle(posx, posy, width, height);
 
-  ofSetColor(255);
+  ofSetColor(GuiHelper::TXT0());
   GuiHelper::drawStringCCAt ("Push ME",
 			     posx + width/2,
 			     posy + height/2);

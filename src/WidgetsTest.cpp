@@ -73,7 +73,7 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   vu.setBoundingBox(30, 570, 240, 160,1,1);
 
   // ColorScheme
-  cs = ColorScheme();
+  cs = GUIColorScheme();
   cs.setBoundingBox(950,330, 150,100, 1,1);
 
 

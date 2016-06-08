@@ -3,28 +3,30 @@
 
 #include "ofMain.h"
 
-class CS  {
+class CS {
 
  public:
   CS();
   CS(std::string name);
   virtual ~CS();
 
-  ofColor getDkBck();
-  ofColor getMdBck();
-  ofColor getLtBck();
-  ofColor getLtrBck();
-  ofColor getFlBck();
+  // have to be implemented in sub classes
 
-  ofColor getDkFor();
-  ofColor getMdFor();
-  ofColor getLtFor();
-  ofColor getLtrFor();
-  ofColor getFlFor();
+  virtual ofColor getDkBck() = 0;
+  virtual ofColor getMdBck() = 0;
+  virtual ofColor getLtBck() = 0;
+  virtual ofColor getLtrBck() = 0;
+  virtual ofColor getFlBck() = 0;
 
-  ofColor getTextCol();
+  virtual ofColor getDkFor() = 0;
+  virtual ofColor getMdFor() = 0;
+  virtual ofColor getLtFor() = 0;
+  virtual ofColor getLtrFor() = 0;
+  virtual ofColor getFlFor() = 0;
 
- private:
+  virtual ofColor getTextCol() = 0;
+
+ protected:
   ofColor darkBackground;
   ofColor middleBackground;
   ofColor lightBackground;

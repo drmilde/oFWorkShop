@@ -5,12 +5,16 @@
 #include "ofTrueTypeFont.h"
 #include "Selectable.h"
 #include "CS.h"
+#include "CSRed.h"
+#include "CSBlue.h"
 
 class GuiHelper : public Selectable {
 
  public:
   GuiHelper();
   virtual ~GuiHelper();
+
+  static void setColorScheme (CS* c);
 
   static void drawStringAt (std::string s, int x, int y);
   static void drawSmallStringRightAt (std::string s, int x, int y);
@@ -37,9 +41,7 @@ class GuiHelper : public Selectable {
  private:
   static ofTrueTypeFont standardFont;
   static ofTrueTypeFont smallFont;
-  static CS colors;
-
-
+  static CS* colors;
 
 };
 

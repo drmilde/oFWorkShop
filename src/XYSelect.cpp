@@ -17,17 +17,17 @@ XYSelect::~XYSelect() {
 void XYSelect::draw() {
   ofPushStyle();
   // draw the background
-  ofSetColor(GuiHelper::BG0());
+  ofSetColor(GuiHelper::BG2());
 
   ofDrawRectangle(posx, posy, width, height);
 
   // draw the cross
-  ofSetColor(255,0,0);
-  ofSetColor(GuiHelper::FG4());
+  ofSetColor(GuiHelper::FG2());
   ofDrawLine(posx, posy + relY , posx + width, posy + relY);
   ofDrawLine(posx + relX, posy, posx + relX, posy + height);
 
   // draw the x/y strings
+  ofSetColor(GuiHelper::TXT0());
   drawValueStringAt("x=",
 		    posx + relX, posy -5, 
 		    valX, posx+width, posy+height);

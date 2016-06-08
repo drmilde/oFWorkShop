@@ -23,25 +23,25 @@ void ToggleButton::drawAt(int x, int y, bool selected) {
   ofPushStyle();
 
   // display background
-  ofSetColor(128);
+  ofSetColor(GuiHelper::BG2());
   ofDrawRectangle(x + posx, y + posy, width, height);
 
   // draw value rect
   float h = ofMap(value, 0, 127, 0, height);
-  ofSetColor(63);
+  ofSetColor(GuiHelper::BG1());
   ofDrawRectangle(x + posx, y + posy + height, width, -h);
 
   // display state
   if (on) {
-    ofSetColor(128,0,0);
+    ofSetColor(GuiHelper::FG2());
   } else {
-    ofSetColor(40,40,40);
+    ofSetColor(GuiHelper::BG0());
   }
   ofDrawCircle(x + posx + width/2, y + posy + height/2, (width*40) / 100);
 
   // draw selection border
   if (selected) {
-    ofSetColor(128,0,0);
+    ofSetColor(GuiHelper::FG2());
     ofSetLineWidth(3);
     ofNoFill();
     ofDrawRectangle(x + posx+3, y + posy+3, width-6, height-6);

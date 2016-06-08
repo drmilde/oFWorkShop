@@ -11,11 +11,11 @@ VUMeter::~VUMeter() {
 void VUMeter::draw() {
   ofPushStyle();
 
-  ofSetColor(88,88,88);
+  ofSetColor(GuiHelper::BG1());
   ofDrawRectangle(posx, posy, width, height);
 
   ofPath path;
-  path.setFillColor(ofColor(127));
+  path.setFillColor(GuiHelper::BG2());
 
   int x = posx + (width/2);
   int y =  posy + (height/2) + 15;
@@ -26,17 +26,15 @@ void VUMeter::draw() {
 	   200, 340);
   path.draw();
 
-
-  
   // draw needle
   ofPushStyle();
-  ofSetColor(127,0,0);
+  ofSetColor(GuiHelper::FG2());
   ofSetLineWidth(3);    
   
   ofPushMatrix();
   ofTranslate(x,y + 30);
 
-  angle = (angle + 1) %128;
+  angle = (angle + 1) % 128;
   setValue(angle/127.0);
 
   int a = (int) (ofMap(getValue() , 0, 1, 310, 410));
@@ -47,14 +45,12 @@ void VUMeter::draw() {
   ofPopStyle();
 
   // draw cover
-  ofSetColor(127);
+  ofSetColor(GuiHelper::BG2());
   ofDrawCircle(x,y+30,10);
-
 
   // display current value
   ofSetColor(255);
   GuiHelper::drawStringAt ("+" + ofToString(getValue(),3), posx + 10, posy + height - 10);
-
 
   ofPopStyle();
 }

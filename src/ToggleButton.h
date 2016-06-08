@@ -4,6 +4,7 @@
 #include <iostream>
 #include "ofMain.h"
 #include "Selectable.h"
+#include "GuiHelper.h"
 
 class ToggleButton : public Selectable {
  public:

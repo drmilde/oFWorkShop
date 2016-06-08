@@ -27,23 +27,22 @@ void TextButton::draw() {
   ofPushStyle();
 
 
-  ofSetColor(255);
-
+  ofSetColor(GuiHelper::TXT0());
   if (state <= 0) {
-    ofSetColor(128,0,0);
+    ofSetColor(GuiHelper::FG2());
     ofDrawRectangle(posx, posy, width, height);
 
-    ofSetColor(255);
+    ofSetColor(GuiHelper::TXT0());
     GuiHelper::drawStringCCAt(label, 
 			      posx + (width/2),
 			      posy + (height/2));
   }
 
   if (state >= 1) {
-    ofSetColor(127);
+    ofSetColor(GuiHelper::BG2());
     ofDrawRectangle(posx, posy, width, height);
 
-    ofSetColor(255);
+    ofSetColor(GuiHelper::TXT0());
     GuiHelper::drawStringCCAt(label1, 
 			      posx + (width/2),
 			      posy + (height/2));
