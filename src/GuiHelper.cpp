@@ -9,8 +9,8 @@ GuiHelper::GuiHelper() : Selectable ("Help, I need somebody", GUI_HELPER){
   GuiHelper::standardFont.load("Courier-Sans.ttf", 28);
   GuiHelper::smallFont.load("Courier-Sans.ttf", 18);
 
-  //setColorScheme(new CSBlue());
-  setColorScheme(new CSRed());
+  setColorScheme(new CSBlue());
+  //setColorScheme(new CSRed());
 }
 
 GuiHelper::~GuiHelper() {
@@ -21,11 +21,11 @@ void GuiHelper::setColorScheme (CS* c) {
   GuiHelper::colors = c;
 }
 
-void GuiHelper::drawStringAt (std::string s, int x, int y) {
+void GuiHelper::stringLAt (std::string s, int x, int y) {
   GuiHelper::smallFont.drawString(s, x, y );
 }
 
-void GuiHelper::drawSmallStringRightAt (std::string s, int x, int y) {
+void GuiHelper::stringRAt (std::string s, int x, int y) {
   ofRectangle box = smallFont.getStringBoundingBox(s,0,0);
   
   GuiHelper::smallFont.drawString(s, 
@@ -33,13 +33,13 @@ void GuiHelper::drawSmallStringRightAt (std::string s, int x, int y) {
 				  y);
 }
 
-void GuiHelper::drawSmallStringLeftCenterAt (std::string s, int x, int y) {
+void GuiHelper::stringLCAt (std::string s, int x, int y) {
   ofRectangle box = smallFont.getStringBoundingBox(s,0,0);
   
   GuiHelper::smallFont.drawString(s, x, y + (box.getHeight()/2) );
 }
 
-void GuiHelper::drawSmallStringRightCenterAt (std::string s, int x, int y) {
+void GuiHelper::stringRCAt (std::string s, int x, int y) {
     ofRectangle box = smallFont.getStringBoundingBox(s,0,0);
 
     GuiHelper::smallFont.drawString(s, 
@@ -48,8 +48,7 @@ void GuiHelper::drawSmallStringRightCenterAt (std::string s, int x, int y) {
 
 }
 
-
-void GuiHelper::drawStringCCAt (std::string s, int x, int y) {
+void GuiHelper::stringCCAt (std::string s, int x, int y) {
     ofRectangle box = smallFont.getStringBoundingBox(s,0,0);
 
     GuiHelper::smallFont.drawString(s, 

@@ -23,9 +23,9 @@ void PushButton::draw() {
   ofDrawRectangle(posx, posy, width, height);
 
   ofSetColor(GuiHelper::TXT0());
-  GuiHelper::drawStringCCAt ("Push ME",
-			     posx + width/2,
-			     posy + height/2);
+  GuiHelper::stringCCAt ("Push ME",
+			 posx + width/2,
+			 posy + height/2);
   ofPopStyle();
 }
 

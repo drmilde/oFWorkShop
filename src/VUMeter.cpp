@@ -11,11 +11,11 @@ VUMeter::~VUMeter() {
 void VUMeter::draw() {
   ofPushStyle();
 
-  ofSetColor(GuiHelper::BG1());
+  ofSetColor(GuiHelper::BG2());
   ofDrawRectangle(posx, posy, width, height);
 
   ofPath path;
-  path.setFillColor(GuiHelper::BG2());
+  path.setFillColor(GuiHelper::BG1());
 
   int x = posx + (width/2);
   int y =  posy + (height/2) + 15;
@@ -50,7 +50,7 @@ void VUMeter::draw() {
 
   // display current value
   ofSetColor(255);
-  GuiHelper::drawStringAt ("+" + ofToString(getValue(),3), posx + 10, posy + height - 10);
+  GuiHelper::stringLAt ("+" + ofToString(getValue(),3), posx + 10, posy + height - 10);
 
   ofPopStyle();
 }

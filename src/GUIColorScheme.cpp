@@ -42,7 +42,7 @@ void GUIColorScheme::draw() {
 
   // text color
   ofSetColor(GuiHelper::TXT0());
-  GuiHelper::drawStringAt ("Text", posx + (4*50) + 10, posy + 50);
+  GuiHelper::stringLAt ("Text", posx + (4*50) + 10, posy + 50);
 
   ofPopStyle();
 }

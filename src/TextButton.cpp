@@ -26,28 +26,31 @@ void TextButton::toggle() {
 void TextButton::draw() {
   ofPushStyle();
 
-
   ofSetColor(GuiHelper::TXT0());
-  if (state <= 0) {
+
+  switch (state) {
+  case 0: {
     ofSetColor(GuiHelper::FG2());
     ofDrawRectangle(posx, posy, width, height);
-
+    
     ofSetColor(GuiHelper::TXT0());
-    GuiHelper::drawStringCCAt(label, 
-			      posx + (width/2),
-			      posy + (height/2));
+    GuiHelper::stringCCAt(label, 
+			  posx + (width/2),
+			  posy + (height/2));
+    break;
   }
 
-  if (state >= 1) {
+  case 1: {
     ofSetColor(GuiHelper::BG2());
     ofDrawRectangle(posx, posy, width, height);
 
     ofSetColor(GuiHelper::TXT0());
-    GuiHelper::drawStringCCAt(label1, 
-			      posx + (width/2),
-			      posy + (height/2));
+    GuiHelper::stringCCAt(label1, 
+			  posx + (width/2),
+			  posy + (height/2));
   }
-			    
+  }
+
 
   ofPopStyle();
 }

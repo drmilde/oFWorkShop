@@ -16,13 +16,13 @@ class GuiHelper : public Selectable {
 
   static void setColorScheme (CS* c);
 
-  static void drawStringAt (std::string s, int x, int y);
-  static void drawSmallStringRightAt (std::string s, int x, int y);
+  static void stringLAt (std::string s, int x, int y);
+  static void stringRAt (std::string s, int x, int y);
 
-  static void drawSmallStringLeftCenterAt (std::string s, int x, int y);
-  static void drawSmallStringRightCenterAt (std::string s, int x, int y);
+  static void stringLCAt (std::string s, int x, int y);
+  static void stringRCAt (std::string s, int x, int y);
 
-  static void drawStringCCAt (std::string s, int x, int y);
+  static void stringCCAt (std::string s, int x, int y);
 
   static ofColor BG0();
   static ofColor BG1();
