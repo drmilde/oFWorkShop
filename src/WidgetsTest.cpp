@@ -76,6 +76,9 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   cs = GUIColorScheme();
   cs.setBoundingBox(950,330, 150,100, 1,1);
 
+  // EGEditor
+  eg = EGEditor();
+  eg.setBoundingBox(950,470, 300,130, 1,1);
 
 }
 
@@ -136,6 +139,9 @@ void WidgetsTest::draw() {
 
   // ColorScheme
   cs.draw();
+
+  // EGEditor
+  eg.draw();
 
 }
 

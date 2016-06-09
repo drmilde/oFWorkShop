@@ -17,6 +17,7 @@
 #include "PushButton.h"
 #include "VUMeter.h"
 #include "GUIColorScheme.h"
+#include "EGEditor.h"
 
 class WidgetsTest : public GuiDrawable{
 
@@ -63,6 +64,9 @@ class WidgetsTest : public GuiDrawable{
 
   // ColorScheme
   GUIColorScheme cs;
+
+  // EGEditor
+  EGEditor eg;
 
 
 };

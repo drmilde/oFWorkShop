@@ -15,6 +15,7 @@ void VUMeter::draw() {
   ofDrawRectangle(posx, posy, width, height);
 
   ofPath path;
+  path.setCircleResolution(35);
   path.setFillColor(GuiHelper::BG1());
 
   int x = posx + (width/2);
@@ -45,7 +46,7 @@ void VUMeter::draw() {
   ofPopStyle();
 
   // draw cover
-  ofSetColor(GuiHelper::BG2());
+  ofSetColor(GuiHelper::BG1());
   ofDrawCircle(x,y+30,10);
 
   // display current value

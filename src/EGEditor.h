@@ -3,6 +3,8 @@
 
 #include "ofMain.h"
 #include "Selectable.h"
+#include "GuiHelper.h"
+#include "EGPointList.h"
 
 class EGEditor : public Selectable {
 
@@ -12,6 +14,9 @@ class EGEditor : public Selectable {
   virtual ~EGEditor();
 
   void draw();
+
+ private:
+  EGPointList list;
 
 };
 
