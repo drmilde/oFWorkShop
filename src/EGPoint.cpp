@@ -1,11 +1,18 @@
 #include "EGPoint.h"
 
-EGPoint::EGPoint(int id, float startL, float endL, float maxD, TYPE t) {
+EGPoint::EGPoint(int id, std::string n, 
+		 float startL, float endL, 
+		 float dur, float maxD, 
+		 TYPE t) {
   ID = id;
   setStartLevel(startL);
   setEndLevel(endL);
-  maxDuration = maxD;
+
+  maxDuration = maxD; // must be set before duration
+  setDuration(fmin(dur, maxD));
+
   type = t;
+  name = n;
 }
 
 EGPoint::~EGPoint() {
@@ -16,10 +23,18 @@ EGPoint::~EGPoint() {
 // setter
 void EGPoint::setStartLevel(float l) {
   startLevel = l;
+  startLevel = fmax(0, startLevel);
+  startLevel = fmin(1, startLevel);
 }
 
 void EGPoint::setEndLevel(float l) {
   endLevel = l;
+  endLevel = fmax(0, endLevel);
+  endLevel = fmin(1, endLevel);
+}
+
+void EGPoint::setDuration(float dur) {
+  duration = fmin(dur, maxDuration);
 }
 
 
@@ -46,5 +61,9 @@ float EGPoint::getMaxDuration() {
 
 float EGPoint::getType() {
   return type;
+}
+
+std::string EGPoint::getName() {
+  return name;
 }
 

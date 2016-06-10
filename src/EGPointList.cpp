@@ -17,7 +17,7 @@ EGPoint* EGPointList::get(int id) {
   for (unsigned int i=0; i< points.size(); i++) {
     int val = (points[i])->getID();
     if (val == id) {
-      points[i];
+      return points[i];
     }
   }
 

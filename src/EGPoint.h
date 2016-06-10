@@ -1,6 +1,8 @@
 #ifndef _EG_POINT_h_
 #define _EG_POINT_h_
 
+#include "ofMain.h"
+
 class EGPoint {
  public:
 
@@ -9,7 +11,10 @@ class EGPoint {
     LEVEL
   };
   
-  EGPoint(int id, float startL, float endL, float maxD, TYPE t);
+  EGPoint(int id, std::string n,
+	  float startL, float endL, 
+	  float dur, float maxD, 
+	  TYPE t);
   virtual ~EGPoint();
 
   // getter
@@ -19,11 +24,12 @@ class EGPoint {
   float getDuration();
   float getMaxDuration();
   float getType();
+  std::string getName();
 
   // setter
   void setStartLevel(float l);
   void setEndLevel(float l);
-
+  void setDuration(float dur);
 
  private:
   float startLevel;
@@ -32,6 +38,7 @@ class EGPoint {
   float maxDuration;
   TYPE type;
   int ID;
+  std::string name;
   
 };
 
