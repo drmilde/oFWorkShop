@@ -54,15 +54,26 @@ void EGEditor::draw() {
   ofPushStyle();
 
   // draw background
+  ofSetColor(GuiHelper::BG1());
+  ofDrawRectangle(posx-25, posy-25, width+50, height+50);
   ofSetColor(GuiHelper::BG2());
   ofDrawRectangle(posx, posy, width, height);
 
 
   // draw the curves
+  drawPolygon();
+  drawHandles();
+
+  ofPopStyle();
+}
+
+
+void EGEditor::drawPolygon() {
   ofPushStyle();
+
   ofSetColor(GuiHelper::FG2());
   ofSetLineWidth(3);    
-
+  
   float dur = list.getDuration();
   float currentEndDur = 0;
   int x = 0;
@@ -90,10 +101,45 @@ void EGEditor::draw() {
     }
   }
 
+  ofPopStyle();
+}
+
+
+void EGEditor::drawHandles() {
+  ofPushStyle();
+
+  ofSetColor(GuiHelper::TXT0());
+  ofSetLineWidth(3);   
+  ofNoFill();
+  
+  float dur = list.getDuration();
+  float currentEndDur = 0;
+  int x = 0;
+
+  for (int i = 0; i < list.size(); i++) {
+    EGPoint* p = list.get(i);
+    if (p != NULL) {
+
+      float d = p->getDuration();
+      currentEndDur += d; // increase current end x position
+      int endX = (int)ofMap(currentEndDur, 0, dur, 0, width); // map to screen
+
+      // screen values for start/end level (assuming interval [0-1])
+      int deltaYStart = (int)ofMap(p->getStartLevel(), 0, 1, 0, height);
+      int deltaYEnd = (int)ofMap(p->getEndLevel(), 0, 1, 0, height);
+
+      // drawing lines, inverting y coordinates
+      ofDrawCircle(posx + x, 
+		   (posy + height) - deltaYStart, 
+		   25);
+      ofDrawCircle(posx + endX,
+		   (posy + height) - deltaYEnd,
+		   25);
+      
+      // setting start offset for next partial line
+      x = endX;
+    }
+  }
 
   ofPopStyle();
-
-
-  ofPopStyle();
-
 }
