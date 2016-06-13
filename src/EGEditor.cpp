@@ -5,36 +5,38 @@ EGEditor::EGEditor() : EGEditor("Mr Postman") {
 }
 
 EGEditor::EGEditor(std::string name) : Selectable(name, EG_EDITOR) {
-  // do something useful here
 
   // configuring a standard ADSR envelope
-  EGSpan* p0 = new EGSpan(0, "attack",
-			  0.0, 1.0, 
-			  0.0, 1.0, 
+  EGPoint p0 = EGPoint(0, "attack start", 0, 0, EGPoint::FIXED);
+  EGPoint p1 = EGPoint(1, "attack end", 1.0, 2.0, EGPoint::ALL);
+
+  EGSpan* s0 = new EGSpan(0, "attack",
+			  p0, p1, 
 			  3.0, 
-			  EGSpan::FIXED, EGSpan::ALL);
-  list.add(p0);
-  EGSpan* p1 = new EGSpan(1, "decay", 
-			  1.0, 0.5, 
-			  1.0, 0.7, 
+			  EGSpan::FREE);
+  list.add(s0);
+
+  EGPoint p2 = EGPoint(2, "decay end", 0.5, 1.0, EGPoint::ALL);
+  EGSpan* s1 = new EGSpan(1, "decay",
+			  p1, p2, 
 			  3.0, 
-			  EGSpan::ALL, EGSpan::ALL);
-  list.add(p1);
+			  EGSpan::FREE);
+  list.add(s1);
 
 
-  EGSpan* p2 = new EGSpan(2, "sustain", 
-			  0.5, 0.5, 
-			  1.7, 1.0, 
-			  1.0, 
-			  EGSpan::LEVEL, EGSpan::LEVEL);
-  list.add(p2);
+  EGPoint p3 = EGPoint(3, "sustain end", 0.5, 1.0, EGPoint::ALL);
+  EGSpan* s2 = new EGSpan(2, "sustain",
+			  p2, p3, 
+			  3.0, 
+			  EGSpan::FIXED_LEVEL);
+  list.add(s2);
 
-  EGSpan* p3 = new EGSpan(3, "release", 
-			  0.5, 0.0, 
-			  2.7, 2.0, 
-			  5.0, 
-			  EGSpan::ALL, EGSpan::ALL);
-  list.add(p3);
+  EGPoint p4 = EGPoint(3, "release end", 0.0, 1.0, EGPoint::TIME);
+  EGSpan* s3 = new EGSpan(3, "release",
+			  p3, p4, 
+			  3.0, 
+			  EGSpan::FREE);
+  list.add(s3);
 
   std::cout << "length = " << list.size() << std::endl;
   std::cout << "duration = " << list.getDuration() << std::endl;

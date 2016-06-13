@@ -2,8 +2,6 @@
 
 WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   // do something useful here
-  //standardFont.load("Courier-Sans.ttf", 28);
-  //smallFont.load("Courier-Sans.ttf", 18);
 
   //knobs
   freqKnob =  Knob("freq", 0.0, 0, 1, 220, 140);
