@@ -78,7 +78,7 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
 
   // EGEditor
   eg = EGEditor();
-  eg.setBoundingBox(950,470, 300,130, 1,1);
+  eg.setBoundingBox(950,470, 300,130);
 
 }
 
@@ -189,6 +189,13 @@ void WidgetsTest::drag(int msx, int msy, int x, int y) {
     grid.drag(msx, msy, x, y); 
   }
 
+  // drag EG handles
+  if (eg.isSelected()) {
+    if (eg.inside(x,y)) {
+      eg.drag(x,y);
+    }
+  }
+  
 }
 
 void WidgetsTest::mousePressed(int x, int y) {
@@ -242,10 +249,13 @@ void WidgetsTest::mousePressed(int x, int y) {
   }
 
   // PushButton
-
   if (pb.inside(x,y)) {
     pb.pushed();
   }
 
+  // EG Editor select handle/widget
+  if (eg.inside(x,y)) {
+    eg.highlight(x,y);
+  }
 
 }

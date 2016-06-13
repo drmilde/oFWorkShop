@@ -1,42 +1,52 @@
-#ifndef _EG_POINT_h_
-#define _EG_POINT_h_
+#ifndef _EG_SPAN_h_
+#define _EG_SPAN_h_
 
 #include "ofMain.h"
 
-class EGPoint {
+class EGSpan {
  public:
 
   enum TYPE {
+    FIXED,
     TIME,
-    LEVEL
+    LEVEL,
+    ALL
   };
   
-  EGPoint(int id, std::string n,
-	  float startL, float endL, 
-	  float dur, float maxD, 
-	  TYPE t);
-  virtual ~EGPoint();
+  EGSpan(int id, std::string n,
+	 float startL, float endL, 
+	 float startT, float dur, float maxD, 
+	 TYPE t1, TYPE t2);
+  virtual ~EGSpan();
 
   // getter
   float getID();
   float getStartLevel();
   float getEndLevel();
+  float getEndTime();
   float getDuration();
   float getMaxDuration();
-  float getType();
+  float getTypeStart();
+  float getTypeEnd();
   std::string getName();
 
   // setter
   void setStartLevel(float l);
   void setEndLevel(float l);
+  void setStartTime(float st);
+  void setEndTime(float et);
   void setDuration(float dur);
 
  private:
   float startLevel;
   float endLevel;
+
+  float startTime;
   float duration;
+
   float maxDuration;
-  TYPE type;
+  TYPE type1;
+  TYPE type2;
   int ID;
   std::string name;
   

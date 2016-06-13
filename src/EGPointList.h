@@ -2,7 +2,7 @@
 #define _EG_POINT_LIST_h_
 
 #include "ofMain.h"
-#include "EGPoint.h"
+#include "EGSpan.h"
 
 class EGPointList {
 
@@ -10,13 +10,16 @@ class EGPointList {
   EGPointList();
   virtual ~EGPointList();
 
-  void add(EGPoint* pnt);
-  EGPoint* get(int id);
+  void add(EGSpan* pnt);
+  EGSpan* get(int id);
   float getDuration();
+  float getMaxDuration();
   int size();
 
+  void connect(); // connect nodes
+
  protected:
-  vector <EGPoint *> points;
+  vector <EGSpan *> points;
   
 };
 

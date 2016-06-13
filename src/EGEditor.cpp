@@ -8,40 +8,43 @@ EGEditor::EGEditor(std::string name) : Selectable(name, EG_EDITOR) {
   // do something useful here
 
   // configuring a standard ADSR envelope
-  EGPoint* p0 = new EGPoint(0, "attack",
-			    0.0, 1.0, 
-			    1.0, 
-			    3.0, EGPoint::TIME);
+  EGSpan* p0 = new EGSpan(0, "attack",
+			  0.0, 1.0, 
+			  0.0, 1.0, 
+			  3.0, 
+			  EGSpan::FIXED, EGSpan::ALL);
   list.add(p0);
-  EGPoint* p1 = new EGPoint(1, "decay", 
-			    1.0, 0.5, 
-			    0.7, 
-			    3.0, EGPoint::TIME);
+  EGSpan* p1 = new EGSpan(1, "decay", 
+			  1.0, 0.5, 
+			  1.0, 0.7, 
+			  3.0, 
+			  EGSpan::ALL, EGSpan::ALL);
   list.add(p1);
 
 
-  EGPoint* p2 = new EGPoint(2, "sustain", 
-			    0.5, 0.5, 
-			    1.0, 
-			    1.0, EGPoint::LEVEL);
+  EGSpan* p2 = new EGSpan(2, "sustain", 
+			  0.5, 0.5, 
+			  1.7, 1.0, 
+			  1.0, 
+			  EGSpan::LEVEL, EGSpan::LEVEL);
   list.add(p2);
 
-  EGPoint* p3 = new EGPoint(3, "release", 
-			    0.5, 0.0, 
-			    2.0, 
-			    5.0, EGPoint::TIME);
+  EGSpan* p3 = new EGSpan(3, "release", 
+			  0.5, 0.0, 
+			  2.7, 2.0, 
+			  5.0, 
+			  EGSpan::ALL, EGSpan::ALL);
   list.add(p3);
 
   std::cout << "length = " << list.size() << std::endl;
   std::cout << "duration = " << list.getDuration() << std::endl;
 
   for (int i = 0; i < list.size(); i++) {
-    EGPoint* p = list.get(i);
+    EGSpan* p = list.get(i);
     if (p != NULL) {
       std::cout << "p: " << p->getName() << std::endl;
     }
   }
-
 
 }
 
@@ -62,7 +65,10 @@ void EGEditor::draw() {
 
   // draw the curves
   drawPolygon();
-  drawHandles();
+  // draw the handles
+  if (isSelected()) {
+    drawHandles();
+  }
 
   ofPopStyle();
 }
@@ -74,12 +80,12 @@ void EGEditor::drawPolygon() {
   ofSetColor(GuiHelper::FG2());
   ofSetLineWidth(3);    
   
-  float dur = list.getDuration();
+  float dur = list.getMaxDuration();
   float currentEndDur = 0;
   int x = 0;
 
   for (int i = 0; i < list.size(); i++) {
-    EGPoint* p = list.get(i);
+    EGSpan* p = list.get(i);
     if (p != NULL) {
 
       float d = p->getDuration();
@@ -112,12 +118,11 @@ void EGEditor::drawHandles() {
   ofSetLineWidth(3);   
   ofNoFill();
   
-  float dur = list.getDuration();
+  float dur = list.getMaxDuration();
   float currentEndDur = 0;
-  int x = 0;
 
   for (int i = 0; i < list.size(); i++) {
-    EGPoint* p = list.get(i);
+    EGSpan* p = list.get(i);
     if (p != NULL) {
 
       float d = p->getDuration();
@@ -125,21 +130,66 @@ void EGEditor::drawHandles() {
       int endX = (int)ofMap(currentEndDur, 0, dur, 0, width); // map to screen
 
       // screen values for start/end level (assuming interval [0-1])
-      int deltaYStart = (int)ofMap(p->getStartLevel(), 0, 1, 0, height);
       int deltaYEnd = (int)ofMap(p->getEndLevel(), 0, 1, 0, height);
 
-      // drawing lines, inverting y coordinates
-      ofDrawCircle(posx + x, 
-		   (posy + height) - deltaYStart, 
-		   25);
-      ofDrawCircle(posx + endX,
-		   (posy + height) - deltaYEnd,
-		   25);
-      
-      // setting start offset for next partial line
-      x = endX;
+      // drawing circles, inverting y coordinates
+      if (near(endX, height-deltaYEnd)) {
+	if (move) {
+	  // remap screen to level/duration
+	  // set values
+	  float remapX = ofMap(currentMouseX, 0, width, 0, dur);
+	  float remapY = ofMap(currentMouseY, 0, height, 1, 0);
+	  std::cout << remapX << "," << remapY << "\n";
+
+	  p->setEndTime(remapX);
+	  p->setEndLevel(remapY);
+
+	  list.connect();
+	}
+
+	ofSetColor(GuiHelper::FG2());
+	ofDrawCircle(posx + endX,
+		     (posy + height) - deltaYEnd,
+		     25);
+	
+      } else {
+	ofSetColor(GuiHelper::TXT0());
+	ofDrawCircle(posx + endX,
+		     (posy + height) - deltaYEnd,
+		     25);
+      }      
     }
   }
 
+  ofFill();
+  ofDrawCircle(posx + currentMouseX, posy + currentMouseY, 10);
+
   ofPopStyle();
 }
+
+
+// test routines
+
+void EGEditor::drag(int msx, int msy) {
+  currentMouseX = msx - posx;
+  currentMouseY = msy - posy;
+  move = true;
+}
+
+
+void EGEditor::highlight(int msx, int msy) {
+  currentMouseX = msx - posx;
+  currentMouseY = msy - posy;
+  move = false;
+}
+
+bool EGEditor::near (int x, int y) {
+  bool result = false;
+  int distx = x - currentMouseX;
+  int disty = y - currentMouseY;
+
+  result = ((distx * distx) + (disty * disty)) < ((50/2)*(50/2));
+
+  return result;
+}
+
