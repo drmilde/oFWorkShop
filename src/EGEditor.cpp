@@ -9,6 +9,9 @@ EGEditor::EGEditor(std::string name) : Selectable(name, EG_EDITOR) {
   // configuring a standard ADSR envelope
   EGPoint p0 = EGPoint(0, "attack start", 0, 0, EGPoint::FIXED);
   EGPoint p1 = EGPoint(1, "attack end", 1.0, 2.0, EGPoint::ALL);
+  EGPoint p2 = EGPoint(2, "decay end", 0.5, 2.0, EGPoint::ALL);
+  EGPoint p3 = EGPoint(3, "sustain end", 0.5, 1.0, EGPoint::ALL);
+  EGPoint p4 = EGPoint(4, "release end", 0.0, 1.0, EGPoint::TIME);
 
   EGSpan* s0 = new EGSpan(0, "attack",
 			  p0, p1, 
@@ -16,22 +19,18 @@ EGEditor::EGEditor(std::string name) : Selectable(name, EG_EDITOR) {
 			  EGSpan::FREE);
   list.add(s0);
 
-  EGPoint p2 = EGPoint(2, "decay end", 0.5, 1.0, EGPoint::ALL);
   EGSpan* s1 = new EGSpan(1, "decay",
 			  p1, p2, 
 			  3.0, 
 			  EGSpan::FREE);
   list.add(s1);
 
-
-  EGPoint p3 = EGPoint(3, "sustain end", 0.5, 1.0, EGPoint::ALL);
   EGSpan* s2 = new EGSpan(2, "sustain",
 			  p2, p3, 
 			  3.0, 
 			  EGSpan::FIXED_LEVEL);
   list.add(s2);
 
-  EGPoint p4 = EGPoint(3, "release end", 0.0, 1.0, EGPoint::TIME);
   EGSpan* s3 = new EGSpan(3, "release",
 			  p3, p4, 
 			  3.0, 
@@ -98,7 +97,7 @@ void EGEditor::drawPolygon() {
       int deltaYStart = (int)ofMap(p->getStartLevel(), 0, 1, 0, height);
       int deltaYEnd = (int)ofMap(p->getEndLevel(), 0, 1, 0, height);
 
-      // drawing lines, inverting y coordinates
+      // drawing line, inverting y coordinates
       ofDrawLine(posx + x, 
 		 (posy + height) - deltaYStart,
 		 posx + endX,
@@ -143,10 +142,10 @@ void EGEditor::drawHandles() {
 	  float remapY = ofMap(currentMouseY, 0, height, 1, 0);
 	  std::cout << remapX << "," << remapY << "\n";
 
-	  p->setEndTime(remapX);
+	  //p->setEndTime(remapX);
 	  p->setEndLevel(remapY);
 
-	  list.connect();
+	  //list.connect();
 	}
 
 	ofSetColor(GuiHelper::FG2());

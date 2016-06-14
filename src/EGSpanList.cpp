@@ -1,18 +1,18 @@
-#include "EGPointList.h"
+#include "EGSpanList.h"
 
-EGPointList::EGPointList() {
+EGSpanList::EGSpanList() {
   // do something useful here
 }
 
-EGPointList::~EGPointList() {
+EGSpanList::~EGSpanList() {
   // clean up here
 }
 
-void EGPointList::add(EGSpan* pnt) {
+void EGSpanList::add(EGSpan* pnt) {
   points.push_back(pnt);
 }
 
-EGSpan* EGPointList::get(int id) {
+EGSpan* EGSpanList::get(int id) {
 
   for (unsigned int i=0; i < points.size(); i++) {
     int val = (points[i])->getID();
@@ -24,7 +24,7 @@ EGSpan* EGPointList::get(int id) {
   return NULL;
 }
 
-float EGPointList::getDuration() {
+float EGSpanList::getDuration() {
   float result = 0;
   for (unsigned int i=0; i < points.size(); i++) {
     result += (points[i])->getDuration();
@@ -32,7 +32,7 @@ float EGPointList::getDuration() {
   return result;
 }
 
-float EGPointList::getMaxDuration() {
+float EGSpanList::getMaxDuration() {
   float result = 0;
   for (unsigned int i=0; i < points.size(); i++) {
     result += (points[i])->getMaxDuration();
@@ -41,11 +41,11 @@ float EGPointList::getMaxDuration() {
 }
 
 
-int EGPointList::size() {
+int EGSpanList::size() {
   return (int)(points.size());
 }
 
-void EGPointList::connect() {
+void EGSpanList::connect() {
   for (unsigned int i=0; i < points.size(); i++) {
     if (i < (points.size()-1)) {
       points[i+1]->setStartTime(points[i]->getEndTime());

@@ -1,14 +1,14 @@
-#ifndef _EG_POINT_LIST_h_
-#define _EG_POINT_LIST_h_
+#ifndef _EG_SPAN_LIST_h_
+#define _EG_SPAN_LIST_h_
 
 #include "ofMain.h"
 #include "EGSpan.h"
 
-class EGPointList {
+class EGSpanList {
 
  public:
-  EGPointList();
-  virtual ~EGPointList();
+  EGSpanList();
+  virtual ~EGSpanList();
 
   void add(EGSpan* pnt);
   EGSpan* get(int id);

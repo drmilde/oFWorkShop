@@ -4,7 +4,7 @@
 #include "ofMain.h"
 #include "Selectable.h"
 #include "GuiHelper.h"
-#include "EGPointList.h"
+#include "EGSpanList.h"
 
 class EGEditor : public Selectable {
 
@@ -22,7 +22,7 @@ class EGEditor : public Selectable {
   void drawHandles();
   bool near(int x, int y);
 
-  EGPointList list;
+  EGSpanList list;
 
   int currentMouseX = -100; // outside click range
   int currentMouseY = -100; // outside click range
