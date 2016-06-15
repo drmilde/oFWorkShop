@@ -12,7 +12,8 @@ EGSpan::EGSpan(int id, std::string n,
   maxDuration = maxDrtn;
 
   // duration setzen und normalisieren
-  duration = fmin(fabs(p2.getTime()-p1.getTime()), maxDuration);
+  duration = fmin(fabs(endPoint.getTime()-startPoint.getTime()), 
+		  maxDuration);
   duration = fmax(0, duration);
 
   type = t;
@@ -35,16 +36,25 @@ void EGSpan::setEndLevel(float l) {
 void EGSpan::setDuration(float dur) {
   duration = fmin(dur, maxDuration);
   duration = fmax(0, duration);
+  endPoint.setTime(startPoint.getTime() + duration);
 }
 
 void EGSpan::setStartTime(float st) {
-  startPoint.setTime(st);
-  updateDuration();
+  if (st <= endPoint.getTime()) {
+    startPoint.setTime(st);
+    updateDuration();
+  }
 }
 
 void EGSpan::setEndTime(float et) {
-  endPoint.setTime(et);
-  updateDuration();
+  if (et >= startPoint.getTime()) {
+    endPoint.setTime(et);
+    updateDuration();
+  }
+}
+
+float EGSpan::getStartTime() {
+  return startPoint.getTime();
 }
 
 float EGSpan::getEndTime() {
@@ -87,7 +97,6 @@ std::string EGSpan::getName() {
 
 
 // helper
-
 void EGSpan::updateDuration() {
   setDuration(fabs(endPoint.getTime() - startPoint.getTime()));
 }

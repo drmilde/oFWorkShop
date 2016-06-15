@@ -19,7 +19,7 @@ class EGSpanList {
   void connect(); // connect nodes
 
  protected:
-  vector <EGSpan *> points;
+  vector <EGSpan *> spans;
   
 };
 

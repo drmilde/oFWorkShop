@@ -9,9 +9,9 @@ EGEditor::EGEditor(std::string name) : Selectable(name, EG_EDITOR) {
   // configuring a standard ADSR envelope
   EGPoint p0 = EGPoint(0, "attack start", 0, 0, EGPoint::FIXED);
   EGPoint p1 = EGPoint(1, "attack end", 1.0, 2.0, EGPoint::ALL);
-  EGPoint p2 = EGPoint(2, "decay end", 0.5, 2.0, EGPoint::ALL);
-  EGPoint p3 = EGPoint(3, "sustain end", 0.5, 1.0, EGPoint::ALL);
-  EGPoint p4 = EGPoint(4, "release end", 0.0, 1.0, EGPoint::TIME);
+  EGPoint p2 = EGPoint(2, "decay end", 0.5, 4.0, EGPoint::ALL);
+  EGPoint p3 = EGPoint(3, "sustain end", 0.5, 5.0, EGPoint::ALL);
+  EGPoint p4 = EGPoint(4, "release end", 0.0, 6.0, EGPoint::TIME);
 
   EGSpan* s0 = new EGSpan(0, "attack",
 			  p0, p1, 
@@ -82,29 +82,23 @@ void EGEditor::drawPolygon() {
   ofSetLineWidth(3);    
   
   float dur = list.getMaxDuration();
-  float currentEndDur = 0;
-  int x = 0;
 
   for (int i = 0; i < list.size(); i++) {
     EGSpan* p = list.get(i);
     if (p != NULL) {
 
-      float d = p->getDuration();
-      currentEndDur += d; // increase current end x position
-      int endX = (int)ofMap(currentEndDur, 0, dur, 0, width); // map to screen
+      int startX = (int)ofMap(p->getStartTime(), 0, dur, 0, width); // map to screen
+      int endX = (int)ofMap(p->getEndTime(), 0, dur, 0, width); // map to screen
 
       // screen values for start/end level (assuming interval [0-1])
       int deltaYStart = (int)ofMap(p->getStartLevel(), 0, 1, 0, height);
       int deltaYEnd = (int)ofMap(p->getEndLevel(), 0, 1, 0, height);
 
       // drawing line, inverting y coordinates
-      ofDrawLine(posx + x, 
+      ofDrawLine(posx + startX, 
 		 (posy + height) - deltaYStart,
 		 posx + endX,
-		 (posy + height) - deltaYEnd);
-      
-      // setting start offset for next partial line
-      x = endX;
+		 (posy + height) - deltaYEnd);      
     }
   }
 
@@ -120,15 +114,12 @@ void EGEditor::drawHandles() {
   ofNoFill();
   
   float dur = list.getMaxDuration();
-  float currentEndDur = 0;
 
   for (int i = 0; i < list.size(); i++) {
     EGSpan* p = list.get(i);
     if (p != NULL) {
 
-      float d = p->getDuration();
-      currentEndDur += d; // increase current end x position
-      int endX = (int)ofMap(currentEndDur, 0, dur, 0, width); // map to screen
+      int endX = (int)ofMap(p->getEndTime(), 0, dur, 0, width); // map to screen
 
       // screen values for start/end level (assuming interval [0-1])
       int deltaYEnd = (int)ofMap(p->getEndLevel(), 0, 1, 0, height);
@@ -142,10 +133,10 @@ void EGEditor::drawHandles() {
 	  float remapY = ofMap(currentMouseY, 0, height, 1, 0);
 	  std::cout << remapX << "," << remapY << "\n";
 
-	  //p->setEndTime(remapX);
+	  p->setEndTime(remapX);
 	  p->setEndLevel(remapY);
 
-	  //list.connect();
+	  list.connect();
 	}
 
 	ofSetColor(GuiHelper::FG2());

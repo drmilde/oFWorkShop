@@ -9,15 +9,15 @@ EGSpanList::~EGSpanList() {
 }
 
 void EGSpanList::add(EGSpan* pnt) {
-  points.push_back(pnt);
+  spans.push_back(pnt);
 }
 
 EGSpan* EGSpanList::get(int id) {
 
-  for (unsigned int i=0; i < points.size(); i++) {
-    int val = (points[i])->getID();
+  for (unsigned int i=0; i < spans.size(); i++) {
+    int val = (spans[i])->getID();
     if (val == id) {
-      return points[i];
+      return spans[i];
     }
   }
 
@@ -26,30 +26,30 @@ EGSpan* EGSpanList::get(int id) {
 
 float EGSpanList::getDuration() {
   float result = 0;
-  for (unsigned int i=0; i < points.size(); i++) {
-    result += (points[i])->getDuration();
+  for (unsigned int i=0; i < spans.size(); i++) {
+    result += (spans[i])->getDuration();
   }
   return result;
 }
 
 float EGSpanList::getMaxDuration() {
   float result = 0;
-  for (unsigned int i=0; i < points.size(); i++) {
-    result += (points[i])->getMaxDuration();
+  for (unsigned int i=0; i < spans.size(); i++) {
+    result += (spans[i])->getMaxDuration();
   }
   return result;
 }
 
 
 int EGSpanList::size() {
-  return (int)(points.size());
+  return (int)(spans.size());
 }
 
 void EGSpanList::connect() {
-  for (unsigned int i=0; i < points.size(); i++) {
-    if (i < (points.size()-1)) {
-      points[i+1]->setStartTime(points[i]->getEndTime());
-      points[i+1]->setStartLevel(points[i]->getEndLevel());
+  for (unsigned int i=0; i < spans.size(); i++) {
+    if (i < (spans.size()-1)) {
+      spans[i+1]->setStartTime(spans[i]->getEndTime());
+      spans[i+1]->setStartLevel(spans[i]->getEndLevel());
     }
   }
  }
