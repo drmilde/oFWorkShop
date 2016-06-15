@@ -38,7 +38,6 @@ class EGSpan {
   void setEndLevel(float l);
   void setStartTime(float st);
   void setEndTime(float et);
-  void setDuration(float dur);
 
  private:
   void updateDuration();
@@ -46,7 +45,6 @@ class EGSpan {
   EGPoint startPoint;
   EGPoint endPoint;
 
-  float duration;
   float maxDuration;
   int ID;
   std::string name;

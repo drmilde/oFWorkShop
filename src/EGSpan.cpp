@@ -11,18 +11,12 @@ EGSpan::EGSpan(int id, std::string n,
   endPoint = p2;
   maxDuration = maxDrtn;
 
-  // duration setzen und normalisieren
-  duration = fmin(fabs(endPoint.getTime()-startPoint.getTime()), 
-		  maxDuration);
-  duration = fmax(0, duration);
-
   type = t;
 }
 
 EGSpan::~EGSpan() {
   // clean up here
 }
-
 
 // setter
 void EGSpan::setStartLevel(float l) {
@@ -33,23 +27,19 @@ void EGSpan::setEndLevel(float l) {
   endPoint.setLevel(l);
 }
 
-void EGSpan::setDuration(float dur) {
-  duration = fmin(dur, maxDuration);
-  duration = fmax(0, duration);
-  endPoint.setTime(startPoint.getTime() + duration);
-}
-
 void EGSpan::setStartTime(float st) {
   if (st <= endPoint.getTime()) {
-    startPoint.setTime(st);
-    updateDuration();
+    if (fabs(endPoint.getTime() - st) < maxDuration) {
+      startPoint.setTime(st);
+    }
   }
 }
 
 void EGSpan::setEndTime(float et) {
   if (et >= startPoint.getTime()) {
-    endPoint.setTime(et);
-    updateDuration();
+    if (fabs(et - startPoint.getTime()) < maxDuration) {
+      endPoint.setTime(et);
+    }
   }
 }
 
@@ -76,7 +66,7 @@ float EGSpan::getEndLevel() {
 }
 
 float EGSpan::getDuration() {
-  return duration;
+  return fabs(endPoint.getTime() - startPoint.getTime());
 }
 
 float EGSpan::getMaxDuration() {
@@ -93,12 +83,6 @@ int EGSpan::getTypeEnd() {
 
 std::string EGSpan::getName() {
   return name;
-}
-
-
-// helper
-void EGSpan::updateDuration() {
-  setDuration(fabs(endPoint.getTime() - startPoint.getTime()));
 }
 
 
