@@ -15,7 +15,7 @@ class EGSpan {
   };
   
   EGSpan(int id, std::string n,
-	 EGPoint p1, EGPoint p2,
+	 EGPoint* p1, EGPoint* p2,
 	 float maxDrtn,
 	 TYPE t
 	 );
@@ -42,8 +42,8 @@ class EGSpan {
  private:
   void updateDuration();
 
-  EGPoint startPoint;
-  EGPoint endPoint;
+  EGPoint* startPoint;
+  EGPoint* endPoint;
 
   float maxDuration;
   int ID;

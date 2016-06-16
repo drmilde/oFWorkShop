@@ -3,6 +3,8 @@
 
 #include "ofMain.h"
 #include "EGSpan.h"
+#include "EGPoint.h"
+#include "IDGenerator.h"
 
 class EGSpanList {
 
@@ -10,16 +12,30 @@ class EGSpanList {
   EGSpanList();
   virtual ~EGSpanList();
 
-  void add(EGSpan* pnt);
-  EGSpan* get(int id);
+  void addPoint(int id, std::string name, 
+		float lvl, float tme, EGPoint::TYPE t);
+
+  void addSpan(std::string name, 
+	       int idP1, int idP2, 
+	       float maxD,
+	       EGSpan::TYPE t);
+
+  EGSpan* getSpan(int id);
+  EGPoint* getPoint(int id);
+
   float getDuration();
   float getMaxDuration();
-  int size();
 
-  void connect(); // connect nodes
+  int size();
+  void clear();
+
+  // list constraints
+  void order();
 
  protected:
   vector <EGSpan *> spans;
+  vector <EGPoint *> points;
+  IDGenerator IDG = IDGenerator();
   
 };
 

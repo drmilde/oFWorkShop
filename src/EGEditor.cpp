@@ -5,43 +5,23 @@ EGEditor::EGEditor() : EGEditor("Mr Postman") {
 }
 
 EGEditor::EGEditor(std::string name) : Selectable(name, EG_EDITOR) {
-
   // configuring a standard ADSR envelope
-  EGPoint p0 = EGPoint(0, "attack start", 0, 0, EGPoint::FIXED);
-  EGPoint p1 = EGPoint(1, "attack end", 1.0, 2.0, EGPoint::ALL);
-  EGPoint p2 = EGPoint(2, "decay end", 0.5, 4.0, EGPoint::ALL);
-  EGPoint p3 = EGPoint(3, "sustain end", 0.5, 5.0, EGPoint::ALL);
-  EGPoint p4 = EGPoint(4, "release end", 0.0, 6.0, EGPoint::TIME);
+  list.addPoint(0, "attack start", 0, 0, EGPoint::FIXED);
+  list.addPoint(1, "attack end", 1.0, 2.0, EGPoint::ALL);
+  list.addPoint(2, "decay end", 0.5, 4.0, EGPoint::ALL);
+  list.addPoint(3, "sustain end", 0.5, 5.0, EGPoint::ALL);
+  list.addPoint(4, "release end", 0.0, 6.0, EGPoint::TIME);
 
-  EGSpan* s0 = new EGSpan(0, "attack",
-			  p0, p1, 
-			  3.0, 
-			  EGSpan::FREE);
-  list.add(s0);
-
-  EGSpan* s1 = new EGSpan(1, "decay",
-			  p1, p2, 
-			  3.0, 
-			  EGSpan::FREE);
-  list.add(s1);
-
-  EGSpan* s2 = new EGSpan(2, "sustain",
-			  p2, p3, 
-			  3.0, 
-			  EGSpan::FIXED_LEVEL);
-  list.add(s2);
-
-  EGSpan* s3 = new EGSpan(3, "release",
-			  p3, p4, 
-			  3.0, 
-			  EGSpan::FREE);
-  list.add(s3);
+  list.addSpan("attack", 0, 1, 3.0, EGSpan::FREE);
+  list.addSpan("decay", 1, 2, 3.0, EGSpan::FREE);
+  list.addSpan("sustain", 2, 3, 3.0, EGSpan::FIXED_LEVEL);
+  list.addSpan("release", 3, 4, 3.0, EGSpan::FREE);
 
   std::cout << "length = " << list.size() << std::endl;
   std::cout << "duration = " << list.getDuration() << std::endl;
 
   for (int i = 0; i < list.size(); i++) {
-    EGSpan* p = list.get(i);
+    EGSpan* p = list.getSpan(i);
     if (p != NULL) {
       std::cout << "p: " << p->getName() << std::endl;
     }
@@ -54,7 +34,6 @@ EGEditor::~EGEditor() {
 }
 
 void EGEditor::draw() {
-
   ofPushStyle();
 
   // draw background
@@ -62,7 +41,6 @@ void EGEditor::draw() {
   ofDrawRectangle(posx-25, posy-25, width+50, height+50);
   ofSetColor(GuiHelper::BG2());
   ofDrawRectangle(posx, posy, width, height);
-
 
   // draw the curves
   drawPolygon();
@@ -84,7 +62,7 @@ void EGEditor::drawPolygon() {
   float dur = list.getMaxDuration();
 
   for (int i = 0; i < list.size(); i++) {
-    EGSpan* p = list.get(i);
+    EGSpan* p = list.getSpan(i);
     if (p != NULL) {
 
       int startX = (int)ofMap(p->getStartTime(), 0, dur, 0, width); // map to screen
@@ -116,7 +94,7 @@ void EGEditor::drawHandles() {
   float dur = list.getMaxDuration();
 
   for (int i = 0; i < list.size(); i++) {
-    EGSpan* p = list.get(i);
+    EGSpan* p = list.getSpan(i);
     if (p != NULL) {
 
       int endX = (int)ofMap(p->getEndTime(), 0, dur, 0, width); // map to screen
@@ -136,7 +114,7 @@ void EGEditor::drawHandles() {
 	  p->setEndTime(remapX);
 	  p->setEndLevel(remapY);
 
-	  list.connect();
+	  list.order(); // force ordered list
 	}
 
 	ofSetColor(GuiHelper::FG2());
