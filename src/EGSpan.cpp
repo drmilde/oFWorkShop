@@ -86,3 +86,31 @@ std::string EGSpan::getName() {
 }
 
 
+// sanity checking
+
+bool EGSpan::check(int id, float tme) {
+ 
+  if (getID() == id) {// correct EGSpan ??
+    std::cout << "ep, " << startPoint->getName();
+    return (fabs(tme - startPoint->getTime()) <= getMaxDuration());
+  }
+
+  return true;
+}
+
+
+void EGSpan::print() {
+  std::cout << getName()
+	    << ","
+	    << startPoint->getTime()
+	    << ","
+	    << endPoint->getTime()
+	    << ","
+	    << getDuration()
+	    << ","
+	    << getMaxDuration()
+	    << std::endl;
+}
+
+
+

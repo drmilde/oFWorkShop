@@ -9,8 +9,8 @@ EGEditor::EGEditor(std::string name) : Selectable(name, EG_EDITOR) {
   list.addPoint(0, "attack start", 0, 0, EGPoint::FIXED);
   list.addPoint(1, "attack end", 1.0, 2.0, EGPoint::ALL);
   list.addPoint(2, "decay end", 0.5, 4.0, EGPoint::ALL);
-  list.addPoint(3, "sustain end", 0.5, 5.0, EGPoint::ALL);
-  list.addPoint(4, "release end", 0.0, 6.0, EGPoint::TIME);
+  list.addPoint(3, "sustain end", 0.5, 6.0, EGPoint::ALL);
+  list.addPoint(4, "release end", 0.0, 8.0, EGPoint::TIME);
 
   list.addSpan("attack", 0, 1, 3.0, EGSpan::FREE);
   list.addSpan("decay", 1, 2, 3.0, EGSpan::FREE);
@@ -110,11 +110,17 @@ void EGEditor::drawHandles() {
 	  float remapX = ofMap(currentMouseX, 0, width, 0, dur);
 	  float remapY = ofMap(currentMouseY, 0, height, 1, 0);
 	  std::cout << remapX << "," << remapY << "\n";
+	  p->print();
 
-	  p->setEndTime(remapX);
-	  p->setEndLevel(remapY);
-
-	  list.order(); // force ordered list
+	  if (list.checkSpans(p->getID(), remapX)) {
+	    p->setEndTime(remapX);
+	    p->setEndLevel(remapY);
+	    
+	    list.order(); // force ordered list
+	  } else {
+	    std::cout << "error in span: ";
+	    p->print();
+	  }
 	}
 
 	ofSetColor(GuiHelper::FG2());

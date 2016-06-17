@@ -39,6 +39,10 @@ class EGSpan {
   void setStartTime(float st);
   void setEndTime(float et);
 
+  // sanity checking
+  bool check(int id, float tme);
+  void print();
+
  private:
   void updateDuration();
 

@@ -31,6 +31,7 @@ class EGSpanList {
 
   // list constraints
   void order();
+  bool checkSpans(int id, float tme);
 
  protected:
   vector <EGSpan *> spans;
