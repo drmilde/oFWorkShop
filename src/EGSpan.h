@@ -32,6 +32,8 @@ class EGSpan {
   int getTypeStart();
   int getTypeEnd();
   std::string getName();
+  EGPoint* getStartPoint();
+  EGPoint* getEndPoint();
 
   // setter
   void setStartLevel(float l);

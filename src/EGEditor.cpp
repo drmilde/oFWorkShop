@@ -94,13 +94,13 @@ void EGEditor::drawHandles() {
   float dur = list.getMaxDuration();
 
   for (int i = 0; i < list.size(); i++) {
-    EGSpan* p = list.getSpan(i);
-    if (p != NULL) {
+    EGSpan* span = list.getSpan(i);
+    if (span != NULL) {
 
-      int endX = (int)ofMap(p->getEndTime(), 0, dur, 0, width); // map to screen
+      int endX = (int)ofMap(span->getEndTime(), 0, dur, 0, width); // map to screen
 
       // screen values for start/end level (assuming interval [0-1])
-      int deltaYEnd = (int)ofMap(p->getEndLevel(), 0, 1, 0, height);
+      int deltaYEnd = (int)ofMap(span->getEndLevel(), 0, 1, 0, height);
 
       // drawing circles, inverting y coordinates
       if (near(endX, height-deltaYEnd)) {
@@ -110,16 +110,16 @@ void EGEditor::drawHandles() {
 	  float remapX = ofMap(currentMouseX, 0, width, 0, dur);
 	  float remapY = ofMap(currentMouseY, 0, height, 1, 0);
 	  std::cout << remapX << "," << remapY << "\n";
-	  p->print();
+	  span->print();
 
-	  if (list.checkSpans(p->getID(), remapX)) {
-	    p->setEndTime(remapX);
-	    p->setEndLevel(remapY);
+	  if (list.checkSpans(span->getEndPoint()->getID(), remapX)) {
+	    span->setEndTime(remapX);
+	    span->setEndLevel(remapY);
 	    
 	    list.order(); // force ordered list
 	  } else {
 	    std::cout << "error in span: ";
-	    p->print();
+	    span->print();
 	  }
 	}
 

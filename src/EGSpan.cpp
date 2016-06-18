@@ -85,14 +85,27 @@ std::string EGSpan::getName() {
   return name;
 }
 
+EGPoint* EGSpan::getStartPoint() {
+  return startPoint;
+}
+
+EGPoint* EGSpan::getEndPoint() {
+  return endPoint;
+}
+
 
 // sanity checking
 
 bool EGSpan::check(int id, float tme) {
+  int sID = startPoint->getID();
+  int eID = endPoint->getID();
  
-  if (getID() == id) {// correct EGSpan ??
-    std::cout << "ep, " << startPoint->getName();
+  if (eID == id) { // id belongs to endPoint
     return (fabs(tme - startPoint->getTime()) <= getMaxDuration());
+  }
+
+  if (sID == id) { // id belongs to startPoint
+    return (fabs(endPoint->getTime() - tme) <= getMaxDuration());
   }
 
   return true;
