@@ -18,9 +18,19 @@ class TouchPoint : public Selectable {
   float getValue ();
   void setValue(float v);
 
+  void drag(int msx, int msy);
+  void highlight(int msx, int msy);
+  bool near (int x, int y, int d);
+
+
+
+
  private:
   bool on = true;
   float value;
+  int currentMouseX;
+  int currentMouseY;
+  bool move = false;
 
 };
 

@@ -22,17 +22,34 @@ void TouchPoint::drawAt(int x, int y) {
 
   // display state
   if (on) {
+    // recalculate position/bounding box
+    if (move) {
+      posx = currentMouseX - (width/2);
+      posy = currentMouseY - (height/2);
+      setBoundingBox(posx, posy, width, height);
+    }
+
     ofSetColor(GuiHelper::TXT0());
     ofNoFill();
     
     // draw selected circle
     if (isSelected()) {
+      // highlight TouchPoint
       ofSetColor(GuiHelper::FG2());
       ofSetLineWidth(3);
       ofDrawCircle(x+(width/2), y+(width/2), width/2);
+
+      // draw drag handle
+      if (move) {
+	ofSetColor(GuiHelper::BG0());
+	ofFill();
+	ofDrawCircle(currentMouseX, currentMouseY, 10);
+      }
     } else {
       ofDrawCircle(x+(width/2), y+(width/2), width/2);
+      move = false;
     }
+
   }
 
   //Selectable::draw();
@@ -50,4 +67,31 @@ float TouchPoint::getValue() {
 void TouchPoint::setValue(float v) {
   value = v;
 }
+
+// mouse events
+
+void TouchPoint::drag(int msx, int msy) {
+  currentMouseX = msx;
+  currentMouseY = msy;
+  move = true;
+}
+
+
+void TouchPoint::highlight(int msx, int msy) {
+  currentMouseX = msx;
+  currentMouseY = msy;
+  move = false;
+}
+
+bool TouchPoint::near (int x, int y, int d) {
+  bool result = false;
+  int distx = x - currentMouseX;
+  int disty = y - currentMouseY;
+
+  result = (((distx * distx) + (disty * disty)) < (d*d));
+
+  return result;
+}
+
+
 

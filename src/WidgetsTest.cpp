@@ -200,6 +200,13 @@ void WidgetsTest::drag(int msx, int msy, int x, int y) {
       eg.drag(x,y);
     }
   }
+
+  // drag TouchPoint handles
+  if (tp.isSelected()) {
+    if (tp.inside(x,y)) {
+      tp.drag(x,y);
+    }
+  }
   
 }
 
@@ -265,7 +272,7 @@ void WidgetsTest::mousePressed(int x, int y) {
 
   // TouchPoint
   if (tp.inside(x,y)) {
-    tp.isSelected();
+    tp.highlight(x,y);
   }
 
 
