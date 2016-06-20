@@ -14,6 +14,7 @@ class Selectable : public GuiDrawable {
 	     HSLIDER, VSLIDER, 
 	     XYSELECT,
 	     TOGGLE_BUTTON,
+	     TOUCH_POINT,
 	     RADIO_BUTTON_GROUP,
 	     TEXT_BUTTON,
 	     GUI_HELPER,

@@ -18,6 +18,7 @@
 #include "VUMeter.h"
 #include "GUIColorScheme.h"
 #include "EGEditor.h"
+#include "TouchPoint.h"
 
 class WidgetsTest : public GuiDrawable{
 
@@ -67,6 +68,9 @@ class WidgetsTest : public GuiDrawable{
 
   // EGEditor
   EGEditor eg;
+
+  // TouchPoint
+  TouchPoint tp;
 
 
 };

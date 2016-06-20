@@ -78,6 +78,10 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   eg = EGEditor();
   eg.setBoundingBox(950,470, 300,130);
 
+  // TouchPoint
+  tp = TouchPoint();
+  tp.setBoundingBox(1050, 700, 70, 70,1,1);
+
 }
 
 WidgetsTest::~WidgetsTest() {
@@ -140,6 +144,9 @@ void WidgetsTest::draw() {
 
   // EGEditor
   eg.draw();
+
+  // TouchPoint
+  tp.draw();
 
 }
 
@@ -255,5 +262,11 @@ void WidgetsTest::mousePressed(int x, int y) {
   if (eg.inside(x,y)) {
     eg.highlight(x,y);
   }
+
+  // TouchPoint
+  if (tp.inside(x,y)) {
+    tp.isSelected();
+  }
+
 
 }
