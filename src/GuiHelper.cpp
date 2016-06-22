@@ -9,8 +9,8 @@ GuiHelper::GuiHelper() : Selectable ("Help, I need somebody", GUI_HELPER){
   GuiHelper::standardFont.load("Courier-Sans.ttf", 28);
   GuiHelper::smallFont.load("Courier-Sans.ttf", 18);
 
-  //setColorScheme(new CSBlue());
-  setColorScheme(new CSRed());
+  setColorScheme(new CSBlue());
+  //setColorScheme(new CSRed());
 }
 
 GuiHelper::~GuiHelper() {

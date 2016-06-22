@@ -9,7 +9,7 @@
 class TouchPoint : public Selectable {
  public:
   TouchPoint();
-  TouchPoint(std::string name);
+  TouchPoint(int id, std::string name);
   virtual ~TouchPoint();
 
   void draw();
@@ -22,7 +22,10 @@ class TouchPoint : public Selectable {
   void highlight(int msx, int msy);
   bool near (int x, int y, int d);
 
+  int getCenterX();
+  int getCenterY();
 
+  int getID();
 
 
  private:
@@ -31,6 +34,7 @@ class TouchPoint : public Selectable {
   int currentMouseX;
   int currentMouseY;
   bool move = false;
+  int ID;
 
 };
 

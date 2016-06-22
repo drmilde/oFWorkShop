@@ -1,12 +1,12 @@
 #include "TouchPoint.h"
 
-TouchPoint::TouchPoint() : TouchPoint("Be gentle, please") {
+TouchPoint::TouchPoint() : TouchPoint(0, "Be gentle, please") {
   // do something useful here
 }
 
-TouchPoint::TouchPoint(std::string name) : Selectable(name, TOUCH_POINT) {
+TouchPoint::TouchPoint(int id, std::string name) : Selectable(name, TOUCH_POINT) {
   // do something useful here
-  setValue (0);
+  ID = id;
 }
 
 TouchPoint::~TouchPoint() {
@@ -92,6 +92,23 @@ bool TouchPoint::near (int x, int y, int d) {
 
   return result;
 }
+
+
+// return current center position
+
+int TouchPoint::getCenterX() {
+  return currentMouseX;
+}
+
+int TouchPoint::getCenterY() {
+  return currentMouseY;
+}
+
+
+int TouchPoint::getID() {
+  return ID;
+}
+
 
 
 

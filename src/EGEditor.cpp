@@ -98,9 +98,12 @@ void EGEditor::drawHandles() {
     if (span != NULL) {
 
       int endX = (int)ofMap(span->getEndTime(), 0, dur, 0, width); // map to screen
-
       // screen values for start/end level (assuming interval [0-1])
       int deltaYEnd = (int)ofMap(span->getEndLevel(), 0, 1, 0, height);
+
+      TouchPoint* tp = list.getTouchPoint(span->getID());
+      tp->setBoundingBox(posx + endX - 50, posy + height - deltaYEnd - 50, 100, 100);
+      tp->draw();
 
       // drawing circles, inverting y coordinates
       if (near(endX, height-deltaYEnd)) {

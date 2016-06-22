@@ -4,6 +4,7 @@
 #include "ofMain.h"
 #include "EGSpan.h"
 #include "EGPoint.h"
+#include "TouchPoint.h"
 #include "IDGenerator.h"
 
 class EGSpanList {
@@ -22,6 +23,7 @@ class EGSpanList {
 
   EGSpan* getSpan(int id);
   EGPoint* getPoint(int id);
+  TouchPoint* getTouchPoint(int id);
 
   float getDuration();
   float getMaxDuration();
@@ -36,7 +38,13 @@ class EGSpanList {
  protected:
   vector <EGSpan *> spans;
   vector <EGPoint *> points;
+  vector <TouchPoint *> handles;
+
   IDGenerator IDG = IDGenerator();
+
+ private:
+  void addTouchPoint(int id);
+
   
 };
 

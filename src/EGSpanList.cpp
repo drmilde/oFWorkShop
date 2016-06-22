@@ -30,7 +30,7 @@ void EGSpanList::addPoint(int id,
 			  EGPoint::TYPE t) {
 
   points.push_back(new EGPoint(id, name, lvl, tme, t));
-
+  handles.push_back(new TouchPoint(id, name));
 }
 
 
@@ -45,6 +45,19 @@ EGSpan* EGSpanList::getSpan(int id) {
 
   return NULL;
 }
+
+TouchPoint* EGSpanList::getTouchPoint(int id) {
+
+  for (unsigned int i=0; i < handles.size(); i++) {
+    int val = (handles[i])->getID();
+    if (val == id) {
+      return handles[i];
+    }
+  }
+
+  return NULL;
+}
+
 
 EGPoint* EGSpanList::getPoint(int id) {
 
