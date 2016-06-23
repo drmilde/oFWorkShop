@@ -85,10 +85,10 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   // TouchPointField
   tpf = TouchPointField();
   tpf.setBoundingBox(960, 650, 270, 90,1,1);
-  tpf.addTouchPoint(0, 0,0, 70);
-  tpf.addTouchPoint(1, 120,20, 70);
-  tpf.addTouchPoint(2, 230,30, 70);
-  tpf.addTouchPoint(3, 340,40, 70);
+  tpf.addTouchPoint(0, 0, 70);
+  tpf.addTouchPoint(120, 20, 70);
+  tpf.addTouchPoint(230, 30, 70);
+  tpf.addTouchPoint(340, 40, 70);
 
 }
 
@@ -218,6 +218,11 @@ void WidgetsTest::drag(int msx, int msy, int x, int y) {
       tp.drag(x,y);
     }
   }
+
+  // drag TouchPoint handles
+  if (tpf.isSelected()) {
+    tpf.drag(x,y);
+  }
   
 }
 
@@ -289,6 +294,7 @@ void WidgetsTest::mousePressed(int x, int y) {
   // TouchPointField
   if (tpf.inside(x,y)) {
     // clicked inside TouchPointField
+    tpf.clicked(x,y);
   }
 
 

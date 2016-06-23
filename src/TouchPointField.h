@@ -4,6 +4,7 @@
 #include "ofMain.h"
 #include "Selectable.h"
 #include "TouchPoint.h"
+#include "IDGenerator.h"
 
 class TouchPointField : public Selectable {
  public:
@@ -14,12 +15,15 @@ class TouchPointField : public Selectable {
   
   void draw();
   void drawTouchPoints();
-  void addTouchPoint(int id, int x, int y, int r);
+  void addTouchPoint(int x, int y, int r);
+  void drag(int x, int y);
+  void clicked(int x, int y);
 
 
  private:
   int normX(int x);
   int normY(int y);
+  IDGenerator IDG = IDGenerator();
 
   vector <TouchPoint *> tpoints;
 
