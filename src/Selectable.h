@@ -15,6 +15,7 @@ class Selectable : public GuiDrawable {
 	     XYSELECT,
 	     TOGGLE_BUTTON,
 	     TOUCH_POINT,
+	     TOUCH_POINT_FIELD,
 	     RADIO_BUTTON_GROUP,
 	     TEXT_BUTTON,
 	     GUI_HELPER,

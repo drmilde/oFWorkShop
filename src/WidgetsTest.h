@@ -19,6 +19,7 @@
 #include "GUIColorScheme.h"
 #include "EGEditor.h"
 #include "TouchPoint.h"
+#include "TouchPointField.h"
 
 class WidgetsTest : public GuiDrawable{
 
@@ -71,6 +72,9 @@ class WidgetsTest : public GuiDrawable{
 
   // TouchPoint
   TouchPoint tp;
+
+  // TouchPoint
+  TouchPointField tpf;
 
 
 };

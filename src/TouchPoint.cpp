@@ -1,6 +1,6 @@
 #include "TouchPoint.h"
 
-TouchPoint::TouchPoint() : TouchPoint(0, "Be gentle, please") {
+TouchPoint::TouchPoint() : TouchPoint(0, "I wanna feel dirty") {
   // do something useful here
 }
 
@@ -97,11 +97,11 @@ bool TouchPoint::near (int x, int y, int d) {
 // return current center position
 
 int TouchPoint::getCenterX() {
-  return currentMouseX;
+  return posx + (width/2);
 }
 
 int TouchPoint::getCenterY() {
-  return currentMouseY;
+  return posy + (height/2);
 }
 
 
