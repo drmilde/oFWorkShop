@@ -51,7 +51,7 @@ int TouchPointField::normY(int y) {
   return (int)(fmin(fmax(0, y), height));
 }
 
-// mouse inteaction
+// mouse interaction
 
 void TouchPointField::drag(int x, int y) {
   // what to do here ?
@@ -61,11 +61,20 @@ void TouchPointField::drag(int x, int y) {
 void TouchPointField::clicked(int x, int y) {
   // is a handle selected ?
   std::cout << "clicked inside tpf\n";
+
+  int count = 0;
   for (unsigned int i = 0; i < tpoints.size(); i++) {
     TouchPoint* tp = tpoints[i];
+
     if (tp != NULL) {
-      tp->inside(x,y);
+      tp->setSelected(false); // reset selection
+      if (count == 0) { // none selected so far, single selection only
+	if (tp->inside(x,y)) {
+	  count++;
+	}
+      }
     }
+
   }
 }
 
