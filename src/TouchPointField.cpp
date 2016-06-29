@@ -33,12 +33,14 @@ void TouchPointField::drawTouchPoints() {
 
 // interface routinen
 
-void TouchPointField::addTouchPoint (int x, int y, int r) {
-  TouchPoint* tp = new TouchPoint(IDG.nextID(), "tpf point");
+int TouchPointField::addTouchPoint (int x, int y, int r) {
+  int id = IDG.nextID();
+  TouchPoint* tp = new TouchPoint(id, "tpf point");
   
   tp->setBoundingBox(offx + x - (r/2), offy + y - (r/2), r,r);
   tpoints.push_back(tp);
   resize();
+  return id;
 }
 
 
@@ -112,4 +114,17 @@ void TouchPointField::setOffSet(int x, int y) {
   offx = x;
   offy = y;
 }
+
+TouchPoint* TouchPointField::getTouchPoint(int id) {
+  for (unsigned int i = 0; i < tpoints.size(); i++) {
+    if (tpoints[i] != NULL) {
+      if (tpoints[i]->getID() == id) {
+	return (tpoints[i]);
+      }
+    } 
+  }
+  
+  return NULL;
+}
+
 

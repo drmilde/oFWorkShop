@@ -15,12 +15,14 @@ class TouchPointField : public DynamicSelectable {
   
   void draw();
   void drawTouchPoints();
-  void addTouchPoint(int x, int y, int r);
+  int addTouchPoint(int x, int y, int r);
   void resize();
   void setOffSet(int x, int y);
 
   void drag(int x, int y);
   void clicked(int x, int y);
+
+  TouchPoint* getTouchPoint(int id);
 
 
  private:

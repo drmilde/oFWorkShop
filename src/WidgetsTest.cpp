@@ -86,10 +86,11 @@ WidgetsTest::WidgetsTest() : GuiDrawable("Testing Widgets",0,0,0,0) {
   tpf = TouchPointField();
   //tpf.setBoundingBox(960, 650, 270, 90,1,1);
   tpf.setOffSet(900,650);
-  tpf.addTouchPoint(0, 0, 70);
-  tpf.addTouchPoint(120, 20, 70);
-  tpf.addTouchPoint(230, 30, 70);
-  tpf.addTouchPoint(340, 40, 70);
+  int id1 = tpf.addTouchPoint(0, 0, 70);
+  int id2 = tpf.addTouchPoint(120, 20, 70);
+  int id3 = tpf.addTouchPoint(230, 30, 70);
+  int id4 = tpf.addTouchPoint(340, 40, 70);
+
 
 }
 

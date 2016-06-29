@@ -127,6 +127,10 @@ int TouchPoint::getHeight() {
   return height;
 }
 
+std::string TouchPoint::getName() {
+  return name;
+}
+
 
 
 

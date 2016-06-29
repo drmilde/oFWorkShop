@@ -30,6 +30,7 @@ class TouchPoint : public Selectable {
   int getPosY();
   int getWidth();
   int getHeight();
+  std::string getName();
 
 
  private:
