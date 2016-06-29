@@ -23,6 +23,7 @@ class Selectable : public GuiDrawable {
 	     VUMETER,
 	     EG_EDITOR,
 	     COLOR_SCHEME,
+	     DYNAMIC_SELECTABE,
 	     GRID
   }; 
 

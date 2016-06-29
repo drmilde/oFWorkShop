@@ -26,6 +26,10 @@ class TouchPoint : public Selectable {
   int getCenterY();
 
   int getID();
+  int getPosX();
+  int getPosY();
+  int getWidth();
+  int getHeight();
 
 
  private:

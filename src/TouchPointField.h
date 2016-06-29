@@ -2,11 +2,11 @@
 #define _TOUCH_POINT_FIELD_h_
 
 #include "ofMain.h"
-#include "Selectable.h"
+#include "DynamicSelectable.h"
 #include "TouchPoint.h"
 #include "IDGenerator.h"
 
-class TouchPointField : public Selectable {
+class TouchPointField : public DynamicSelectable {
  public:
   TouchPointField();
   TouchPointField(std::string name);
@@ -16,16 +16,20 @@ class TouchPointField : public Selectable {
   void draw();
   void drawTouchPoints();
   void addTouchPoint(int x, int y, int r);
+  void resize();
+  void setOffSet(int x, int y);
+
   void drag(int x, int y);
   void clicked(int x, int y);
 
 
  private:
-  int normX(int x);
-  int normY(int y);
   IDGenerator IDG = IDGenerator();
 
   vector <TouchPoint *> tpoints;
+
+  int offx = 0;
+  int offy = 0;
 
 
 };

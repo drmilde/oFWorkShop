@@ -105,9 +105,28 @@ int TouchPoint::getCenterY() {
 }
 
 
+// getter
+
 int TouchPoint::getID() {
   return ID;
 }
+
+int TouchPoint::getPosX() {
+  return posx;
+}
+
+int TouchPoint::getPosY() {
+  return posy;
+}
+
+int TouchPoint::getWidth() {
+  return width;
+}
+
+int TouchPoint::getHeight() {
+  return height;
+}
+
 
 
 
